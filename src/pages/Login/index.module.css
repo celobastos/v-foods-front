@@ -1,0 +1,42 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    overflow: hidden;
+  }
+  
+  .login-notice {
+    width: 100%;
+    height: 63px;
+    border-radius: 11px;
+    background: #E51110;
+    display: flex; /* Adicione esta linha para usar flexbox */
+    justify-content: center; /* Centralize horizontalmente no eixo principal (horizontal) */
+    align-items: center; /* Centralize verticalmente no eixo secundário (vertical) */
+  }
+  
+  .login-notice p {
+    color: #FFFFFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center; /* Centralize o texto dentro do parágrafo horizontalmente */
+    margin: 0; /* Remova a margem do parágrafo para evitar espaçamento indesejado */
+  }
+.v-foods {
+    width: 1512px;
+    top: 63px;
+    border-radius: 11px;
+    background: #FFFFFF;
+}  
+.v-foods img {
+    width: 133px;
+}  
+.v-foods-img {
+    width: 133px;
+    background-color: purple;
+    margin-left: 34,5;
+    margin: 28.5px;
+    
+}  

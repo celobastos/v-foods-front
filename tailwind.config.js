@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'loginMen': "url('/images/login.png')",
+        'loginMen': "url('/images/men.jpg')",
         'loginWoman': "url('/images/loginWoman.png')",
         'loginLogo': "url('/images/loginLogo.png')",
-        'loginNot': "url('/images/empresa.jpg')",
+        'loginNot': "url('/images/empresa.png')",
       }
     },
   },

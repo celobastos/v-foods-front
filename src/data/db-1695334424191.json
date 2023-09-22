@@ -1,0 +1,16 @@
+{
+  "gestor": [
+    {
+      "id": 0,
+      "name": "Gustavo",
+      "email": "gusta@hotmail.com",
+      "password": "123"
+    },
+    {
+      "id": 1,
+      "name": "Lucas",
+      "email": "luca@hotmail.com",
+      "password": "124"
+    }
+  ]
+}

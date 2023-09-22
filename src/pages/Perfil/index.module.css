@@ -1,0 +1,44 @@
+.profile {
+    width: 513px;
+    height: 166px;
+    margin-top: 142px;
+    margin-left: 314px;
+    border-radius: 14px;
+    border: 1px solid #d6d6d6;
+}
+.profile h1 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+.metas {
+    width: 513px;
+    height: 313px;
+    margin-top: 40px;
+    margin-left: 314px;
+    border-radius: 14px;
+    border: 1px solid #d6d6d6;
+    padding-left: 44px;
+    padding-right: 44px;
+}
+.status {
+    width: 513px;
+    height: 313px;
+    margin-top: 55px;
+    margin-left: 4rem/* 64px */;
+    border-radius: 14px;
+    border: 1px solid #d6d6d6;
+    padding-left: 44px;
+    padding-right: 44px;
+}
+.colaboradores {
+    font-family: Material Icons;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 64px;
+    letter-spacing: 0em;
+    text-align: left;
+}

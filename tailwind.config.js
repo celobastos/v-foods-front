@@ -11,6 +11,7 @@ export default {
         'loginWoman': "url('/images/loginWoman.png')",
         'loginLogo': "url('/images/loginLogo.png')",
         'loginNot': "url('/images/empresa.png')",
+        'gestorPerfil': "url('/images/gestor.png')",
       }
     },
   },

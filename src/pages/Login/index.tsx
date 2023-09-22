@@ -1,6 +1,46 @@
+import { useState } from 'react';
 import styles from './index.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+  const navigate = useNavigate();
+  const [email, emailUpdate] = useState('');
+  const [password, passwordUpdate] = useState('');
+  const [message, messageUpdate] =useState('');
+
+  const proceedLogin = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    if(validate()){
+      console.log('proceed');
+      fetch("http://localhost:3000/gestor/" + email).then((res) => {
+        return res.json();
+      }).then((data) =>{
+        if(Object.keys(data).length === 0){
+          messageUpdate('Email ou senha inválidos')
+          
+        } else {
+          if (data.password === password){
+            navigate('/gestor', {replace: true});
+          }else{
+            messageUpdate('Email ou senha inválidos')
+          }
+        }
+      })
+    }
+  }
+  const validate = () => {
+    let result = true;
+    if(email === ' ||' || email === null){
+      result = false;
+      //renderToStaticMarkup.console.warn('Por favor insira um email');
+    }
+    if(password === ' ||' || password === null){
+      result = false;
+      //renderToStaticMarkup.console.warn('Por favor insira uma senha');
+    }
+    return result;
+  }
   return (
     <div className="overflow-hidden">
 
@@ -27,18 +67,16 @@ const Login = () => {
             <div className=' bg-white rounded-2xl w-[430px] h-[480px] mx-24 p-6'>
               <p className='md:text-3xl sm:text-2xl font-bold mt-5'>Entrar como Gestor</p>
               <p className=' text-stone-700'>Gerencie sua loja de forma fácil e rápida</p>
-              <form className='mt-8' action="processar_login.php" method="POST"> 
+              <form className='mt-8' onSubmit={proceedLogin} method="POST"> 
                 <div className='mb-8'>
                   <label htmlFor="email" className='block'>E-mail:</label>
-                  <input type="email" id="email" name="email" required className="w-full px-3 py-3 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"/>
-
+                  <input value={email} onChange={e=>emailUpdate(e.target.value)} type="email" id="email" name="email" required className="w-full px-3 py-3 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"/>
+                  <p className=' text-xs text-red-800'>{message}</p>
                 </div>
+                
                 <div className='mb-8'>
                   <label htmlFor="senha">Senha:</label>
-                  <input className="w-full px-3 py-3 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" type="password" id="senha" name="senha" required/>
-                  <div className='absolute right-64  flex items-center pr-3 -mt-10'>
-                    <img src='images\key.png' className=' w-8'></img>
-                  </div>
+                  <input value={password} onChange={e=>passwordUpdate(e.target.value)} className="w-full px-3 py-3 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" type="password" id="senha" name="senha" required/>
                   <p className='underline underline-offset-2 text-sm ml-60  mt-2 font-medium'>Esqueçi minha senha</p>
                 </div>
                 <div className='mb-8 text-center'>

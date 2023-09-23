@@ -1,0 +1,120 @@
+.div-pai{
+    width: 100%;
+    height: 470px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    margin-top: 75px;
+  }
+  
+  .grafico{
+    width: 624px;
+    height: 467px;
+    padding: 4px;
+    margin-left: 150px;
+  }
+  .botoes{
+    width: 400px;
+    height: 470px;
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    align-content: center;
+    justify-content: space-around;
+    margin-right: 135px;
+    margin-top: 35px;
+  }
+  
+  .botao{
+    height: 142px;
+    width:353px;
+    background-color:#363636 ;
+    border-radius:16px ;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    display: flex;
+  }
+  .botao h1 {
+    color: white; 
+    font-size: 15px; 
+    margin: 0; 
+    padding-top: 50px;
+    font-weight: bold;
+    padding-left: 40px;
+    
+}
+.botao h2 {
+  color: white; 
+  font-size: 12px; 
+  margin: 0; 
+  padding-top: 10px; 
+  padding-right: 35px;
+}
+
+  .grafico img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+.tabela-pai{
+ 
+  width: 100%;
+  height: 200px;
+  margin-top: 50px;
+}
+.image-content {
+  padding-top: 45px;
+}
+
+.tabela-header{
+
+  width: 1017;
+  height: 37px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px; 
+  padding-left: 10px;
+
+}
+.tabela-data{
+  height: 110px;
+  margin-top:30px ;
+  
+}
+.campo {
+  flex-grow: 1;       
+  text-align: center;     
+  border-bottom: 1px solid #ccc;  
+  padding-left: 8px;
+  padding-bottom: -40px;           
+}
+.data-row {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px ;
+  padding-right: 10px;  
+  padding-top: 10px;           
+}
+
+.data-campo {
+  flex-grow: 1;                 
+  text-align: center;  
+  padding-left: 10px ;
+  padding-right: 10px;
+  padding-top: 10px;             
+}
+.icon-classname {
+  width: 40px; 
+  height: 40px; 
+  margin-right: 8px; 
+  padding-bottom: 10px;
+  padding-left: 30px;
+}
+.nome-colaborador {
+  margin-left: 40px;
+}
+

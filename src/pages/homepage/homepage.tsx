@@ -1,5 +1,5 @@
 import React from 'react';
-import SideMenu from '../../components/sideMenu/sideMenu'
+import SideMenu from '../../components/SideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
 import './homepage.css'
 import Rectangle from '../../assets/Rectangle 117.png'

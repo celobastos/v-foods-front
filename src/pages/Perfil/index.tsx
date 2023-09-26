@@ -1,31 +1,12 @@
 import styles from './index.module.css';
+import UserInfo from '../../components/UserInfo';
 
 export const PerfilGestor = () => {
   return (
     <div className='bg-[#fbfbfb] h-screen'>
         <div className='flex '>
             <div id='esquerda'>
-                <div className={styles['profile']}>
-                    <div className=' flex mt-[21px] justify-center'>
-                        <div className='absolute left-[353px]'>
-                            <img src='public\images\gestor.png' className=' w-24 h-24'></img>
-                        </div>
-
-                        <div>
-                            <div className='border-b border-gray-300 pb-4'>
-                                <h1 className=' text-3xl font-bold'>Carlos Eduardo L</h1>
-                                <p className=' text-gray-500 font-semibold text-sm'>Gestor Área X</p>
-                            </div>
-                            <div className=' mt-4'>
-                                <p className=' font-medium flex text-sm'><img src='public\images\mail.png' className=' w-[18px] h-[14px] mr-2 mt-[2px]'></img>Email</p>
-                                <p className='text-gray-500 text-sm'>cadulvfood@gestao.com</p>
-
-                            </div>
-                        </div>
-
-                        
-                        </div>
-                </div>
+                 <UserInfo picture={'c1'} name='Maria Clara N.' cargo='' email='Amale@gmail.com'/>
                 <div className={styles['metas']}>
                     <h1 className=' text-lg font-bold mt-5'>Metas concluidas deste mês</h1>
                     <p className='text-gray-500 text-right text-sm'>23 de Setembro</p>
@@ -83,7 +64,7 @@ export const PerfilGestor = () => {
                 </div>
             </div>
         </div>
-        <footer className=' text-right  mt-4 ml-auto mr-24 flex'>
+        <footer className=' text-right  mt-8 ml-auto mr-32 flex'>
             <div className=' py-2 px-4 border-2 ml-auto rounded-md border-[#d6d6d6]'>Setembro</div> 
             <div className='p-2 bg-black text-white rounded-md ml-4'>Baixar PDF</div>
         </footer>

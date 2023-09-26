@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login";
 import { PerfilGestor } from "./pages/Perfil";
+import Colaborador from "./pages/Colaborador";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
   {
     path: "/Gestor",
     Component: PerfilGestor,
+  },
+  {
+    path: "/Colaborador",
+    Component: Colaborador,
   },
 ]);
 export default function App() {

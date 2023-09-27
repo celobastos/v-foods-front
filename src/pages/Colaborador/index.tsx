@@ -1,16 +1,42 @@
 import styles from './index.module.css';
 import UserInfo from '../../components/UserInfo';
-import SideMenu from '../../components/SideMenu/sideMenu';
+import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
+import { useState, useEffect } from 'react';
+import Gestor from '../../Interfaces/Gestor';
 
 const Colaborador = () => {
-  return (
-    
+
+    const [data, setData] = useState<Gestor>({ name:'', password:'', email:'', imgUrl:'', id: 0});
+    const idGestor = (typeof window !== 'undefined' && window.location.search.includes('id='))
+        ? new URLSearchParams(window.location.search).get('id')
+        : 'defaultId';
+
+        useEffect(() => {
+            const ApiUrl = `http://localhost:3000/api/user/?userId=${idGestor}`; 
         
+            fetch(ApiUrl)
+            .then((response) => {
+                if (!response.ok) {
+                throw new Error('Erro na requisição');
+                }
+                return response.json();
+            })
+            .then((responseData) => {
+                setData(responseData);
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+            });
+        }, [data, idGestor]);
+
+
+  return (
     <div className='bg-[#fbfbfb] h-screen flex  pr-36'>
-        <SideMenu></SideMenu>
+        <SideMenu gestorId={data.id}></SideMenu>
         <div>
-        <NavigationBar></NavigationBar>
+        <NavigationBar name={data.name} picture={data.imgUrl}></NavigationBar>
         <div className='flex pt-[50px]'>
             
             <div id='esquerda'>

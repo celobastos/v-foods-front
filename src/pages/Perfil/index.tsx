@@ -1,17 +1,43 @@
 import styles from './index.module.css';
 import UserInfo from '../../components/UserInfo';
-import SideMenu from '../../components/SideMenu/sideMenu';
+import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
+import { useState, useEffect } from 'react';
+import Gestor from '../../Interfaces/Gestor';
 
 export const PerfilGestor = () => {
+    const [data, setData] = useState<Gestor>({ name:'', password:'', email:'', imgUrl:'', id: 0});
+    const idGestor = (typeof window !== 'undefined' && window.location.search.includes('id='))
+        ? new URLSearchParams(window.location.search).get('id')
+        : 0;
+
+        useEffect(() => {
+            const ApiUrl = `http://localhost:3000/api/user/?userId=${idGestor}`; 
+        
+            fetch(ApiUrl)
+            .then((response) => {
+                if (!response.ok) {
+                throw new Error('Erro na requisição');
+                }
+                return response.json();
+            })
+            .then((responseData) => {
+                setData(responseData);
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+            });
+        }, [data, idGestor]);
+  
+
   return (
     <div className='bg-[#fbfbfb] h-screen flex '>
-        <SideMenu></SideMenu>
+        <SideMenu gestorId={data.id}></SideMenu>
         <div>
-            <NavigationBar></NavigationBar>
+            <NavigationBar name={data.name} picture={data.imgUrl}></NavigationBar>
         <div className='flex pt-[50px]'>
             <div id='esquerda'>
-                 <UserInfo picture={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4Hie0UPsH-7ZLNPHHqaKy1qDRrmQfn7PbQg&usqp=CAU'} name='Carlos Eduardo L.' cargo='' email='carlosedu@gmail.com'/>
+                 <UserInfo picture={data.imgUrl} name={data.name} cargo='' email={data.email}/>
                 <div className={styles['metas']}>
                     <h1 className=' text-lg font-bold mt-5'>Metas concluidas deste mês</h1>
                     <p className='text-gray-500 text-right text-sm'>23 de Setembro</p>
@@ -35,7 +61,7 @@ export const PerfilGestor = () => {
 
                     </div>
                     <div className='h-[138px] w-[218px] rounded-[14px] bg-[#E51110] ml-4 flex px-6 pt-10'>
-                        <img src='images/newColab.png' className=' w-24 h-16 mr-4'></img>
+                        <img src={'https://icon-library.com/images/profile-icon-white/profile-icon-white-1.jpg'} className=' w-32 h-16 mr-4'></img>
                         <div className=' text-white font-semibold mt-2'>
                             <p>Adicionar colaborador</p>
                         </div>

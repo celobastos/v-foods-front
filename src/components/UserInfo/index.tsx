@@ -13,10 +13,10 @@ const UserInfo = ({picture, name, cargo, email}: UserInfoProps) => {
         <div className={styles['profile']}>
             <div className=' flex mt-[21px] '>
                 <div className='absolute left-[353px]'>
-                    <img src={picture} className=' w-24 h-24 rounded-full'></img>
+                    <img src={picture} className=' w-28 h-28 rounded-full'></img>
                 </div>
 
-                <div className=' ml-40'>
+                <div className=' ml-44'>
                     <div className='border-b border-gray-300 pb-4'>
                         <h1 className=' text-3xl font-bold'>{name}</h1>
                         <p className=' text-gray-500 font-semibold text-sm'>{cargo}</p>

@@ -1,20 +1,45 @@
 import React from 'react';
-import SideMenu from '../../components/SideMenu/sideMenu';
+import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
 import Rectangle from '../../assets/Rectangle 117.png'
 import blueCircle from '../../assets/Circulo azul.svg';
-import './indicadores.css'
+import './indicadores.css';
+import { useState, useEffect } from 'react';
+import Gestor from '../../Interfaces/Gestor';
 
 
 const Indicadores: React.FC = () => {
   
+    const [data, setData] = useState<Gestor>({ name:'', password:'', email:'', imgUrl:'', id: 0});
+    const idGestor = (typeof window !== 'undefined' && window.location.search.includes('id='))
+        ? new URLSearchParams(window.location.search).get('id')
+        : 'defaultId';
+
+        useEffect(() => {
+            const ApiUrl = `http://localhost:3000/api/user/?userId=${idGestor}`; 
+        
+            fetch(ApiUrl)
+            .then((response) => {
+                if (!response.ok) {
+                throw new Error('Erro na requisição');
+                }
+                return response.json();
+            })
+            .then((responseData) => {
+                setData(responseData);
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+            });
+        }, [data, idGestor]);
 
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
-            <SideMenu />
+            <SideMenu gestorId={data.id}/>
             <main className="flex-grow bg-background-color"style={{ backgroundColor: '#FBFBFB' }}>
                 <div className="flex items-center">
-                    <NavigationBar />
+                    <NavigationBar name={data.name} picture={data.imgUrl}/>
                 </div>
                     <div className="div-pai">
                     <div className="botoesIndicadores">

@@ -1,12 +1,17 @@
 import styles from './index.module.css';
 import UserInfo from '../../components/UserInfo';
+import SideMenu from '../../components/SideMenu/sideMenu';
+import NavigationBar from '../../components/NavigationBar';
 
 export const PerfilGestor = () => {
   return (
-    <div className='bg-[#fbfbfb] h-screen'>
-        <div className='flex '>
+    <div className='bg-[#fbfbfb] h-screen flex '>
+        <SideMenu></SideMenu>
+        <div>
+            <NavigationBar></NavigationBar>
+        <div className='flex pt-[50px]'>
             <div id='esquerda'>
-                 <UserInfo picture={'c1'} name='Maria Clara N.' cargo='' email='Amale@gmail.com'/>
+                 <UserInfo picture={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4Hie0UPsH-7ZLNPHHqaKy1qDRrmQfn7PbQg&usqp=CAU'} name='Carlos Eduardo L.' cargo='' email='carlosedu@gmail.com'/>
                 <div className={styles['metas']}>
                     <h1 className=' text-lg font-bold mt-5'>Metas concluidas deste mês</h1>
                     <p className='text-gray-500 text-right text-sm'>23 de Setembro</p>
@@ -19,7 +24,7 @@ export const PerfilGestor = () => {
                 </div>
             </div>
             <div id='direita'>
-                <div className='mt-[155px] flex'>
+                <div className='flex'>
                     <div className=' h-[138px] w-[218px] rounded-[14px] bg-black ml-16 p-4 flex justify-start'>
                         <div className=' text-white text-8xl font-bold z-10'>
                             <p className='mr-4'>+</p>
@@ -62,12 +67,13 @@ export const PerfilGestor = () => {
                         </div>
                     </div>
                 </div>
+                <footer className=' text-right  mt-8 flex'>
+                    <div className=' py-2 px-4 border-2 ml-auto rounded-md border-[#d6d6d6]'>Setembro</div> 
+                    <div className='p-2 bg-black text-white rounded-md ml-4'>Baixar PDF</div>
+                </footer>
             </div>
         </div>
-        <footer className=' text-right  mt-8 ml-auto mr-32 flex'>
-            <div className=' py-2 px-4 border-2 ml-auto rounded-md border-[#d6d6d6]'>Setembro</div> 
-            <div className='p-2 bg-black text-white rounded-md ml-4'>Baixar PDF</div>
-        </footer>
+        </div>
     </div>
   )
 }

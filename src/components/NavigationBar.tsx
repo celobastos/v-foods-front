@@ -10,7 +10,7 @@ const NavigationBar = ({name, picture}: NavigationBarProps) => {
         <nav className="bg-white p-6 flex items-center justify-between space-x-8 flex-grow"style={{ backgroundColor: '#FBFBFB' }}>
        
        <div className="flex justify-center flex-grow pl-20 pr-20">
-            <div className="flex items-center border rounded border-gray-300 pt-5 pl-5 pb-5 w-full">
+            <div className="flex items-center border rounded-2xl border-gray-300 pt-5 pl-5 pb-5 w-full">
                 <i className="material-icons mr-2"></i>
                 <input 
                     type="text" 

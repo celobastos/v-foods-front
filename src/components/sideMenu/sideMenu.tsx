@@ -17,13 +17,13 @@ const SideMenu: React.FC = () => {
                 </div>
                 <ul>
                 <li className="mb-4 hover:bg-hover-blue transition p-2 rounded-md">
-                    <a href="#" className="text-gray-700 flex items-center space-x-6">
+                    <a href="/home" className="text-gray-700 flex items-center space-x-6">
                         <img src={HomeIcon} alt="Home Icon" className="w-6 h-6" />
                         <span>Home</span>
                     </a>
                 </li>
                     <li className="mb-4 hover:bg-hover-blue transition p-2 rounded-md">
-                    <a href="#" className="text-gray-700 flex items-center space-x-6">
+                    <a href="http://127.0.0.1:5173/indicadores" className="text-gray-700 flex items-center space-x-6">
                         <img src={IndicadoresIcon} alt="Home Icon" className="w-6 h-6" />
                         <span>Indicadores</span>
                     </a>

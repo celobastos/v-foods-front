@@ -4,6 +4,7 @@ import { PerfilGestor } from "./pages/Perfil";
 import Colaborador from "./pages/Colaborador";
 import HomePage from './pages/homepage/homepage';
 import Indicadores from './pages/indicadores/indicadores';
+import Relatorio from "./pages/relatorio/relatorio";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
     path: "/Indicadores",
     Component: Indicadores,
   },
+  {
+    path: "/Relatorio",
+    Component: Relatorio,
+  },
+  
 ]);
 export default function App() {
   return <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />;

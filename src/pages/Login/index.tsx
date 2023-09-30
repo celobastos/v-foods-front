@@ -9,24 +9,43 @@ const Login = () => {
   const [password, passwordUpdate] = useState('');
   const [message, messageUpdate] =useState('');
 
-  const proceedLogin = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    if(validate()){
-      console.log('proceed');
-      fetch("http://localhost:3000/gestor/" + email).then((res) => {
-        return res.json();
-      }).then((data) =>{
-        if(Object.keys(data).length === 0){
-          messageUpdate('Email ou senha inválidos')
-          
-        } else {
-          if (data.password === password){
-            navigate('/gestor', {replace: true});
-          }else{
-            messageUpdate('Email ou senha inválidos')
-          }
+  const proceedLogin = async (e: { preventDefault: () => void; }) => {
+    if(validate())
+    try {
+      e.preventDefault();
+      const formData = {
+        email: email,
+        password: password
+      };
+      await fetch('http://localhost:3000/api/auth/sign-in', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }else{
+          throw new Error('Erro na requisição');
+          //
         }
+        
       })
+      .then((responseData) => {
+        console.log(responseData.id);
+        navigate(`/HomePage/?id=${responseData.id}`, {replace: true});
+      })
+      .catch((error) => {
+        console.error('Erro:', error);
+        messageUpdate('Email ou senha inválidos');
+      });
+      //window.open(`/gest?id=${data.data.id}`, "_self")
+      //navigate('/gestor', {replace: true});
+    } catch (error) {
+      console.log(error);
+      messageUpdate('Email ou senha inválidos');
+      console.log('Email ou senha inválidos')
     }
   }
   const validate = () => {

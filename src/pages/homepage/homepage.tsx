@@ -1,13 +1,17 @@
 import React from 'react';
-import SideMenu from '../../components/SideMenu/sideMenu';
+import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
 import './homepage.css'
 import Rectangle from '../../assets/Rectangle 117.png'
 import blueCircle from '../../assets/Circulo azul.svg';
 import anaIcon from '../../assets/aninhaIcon.png';
+import useGestorData from '../../components/useGestorData/userGestorData';
 
 
 const HomePage: React.FC = () => {
+
+    const data = useGestorData();
+
     const mockData = [
         {
             colaborador: "João Bastos",
@@ -25,17 +29,16 @@ const HomePage: React.FC = () => {
         }
     ];
     
-
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
-            <SideMenu />
-            <main className="flex-grow bg-background-color"style={{ backgroundColor: '#FBFBFB' }}>
+            <SideMenu gestorId={data.id}/>
+            <main className="flex-grow bg-gray-50">
                 <div className="flex items-center">
                     <div className="flex flex-col space-y-4"style={{ marginLeft: '30px' }} >
-                        <h1 className="text-3xl text-black font-bold">Olá, Cadu!</h1>
+                        <h1 className="text-3xl text-black font-bold">Olá, {data.name}!</h1>
                         <h2 className="text-xl text-gray-700">Seja bem-vindo de volta!</h2>
                     </div>
-                    <NavigationBar />
+                    <NavigationBar name={data.name} picture={data.imgUrl} />
                 </div>
                 <div className="div-pai">
                     <div className="grafico">

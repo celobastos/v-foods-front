@@ -1,20 +1,22 @@
 import React from 'react';
-import SideMenu from '../../components/SideMenu/sideMenu';
+import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
 import Rectangle from '../../assets/Rectangle 117.png'
 import blueCircle from '../../assets/Circulo azul.svg';
-import './indicadores.css'
+import './indicadores.css';
+import useGestorData from '../../components/useGestorData/userGestorData';
 
 
 const Indicadores: React.FC = () => {
   
+    const data = useGestorData();
 
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
-            <SideMenu />
-            <main className="flex-grow bg-background-color"style={{ backgroundColor: '#FBFBFB' }}>
+            <SideMenu gestorId={data.id}/>
+            <main className="flex-grow bg-gray-50">
                 <div className="flex items-center">
-                    <NavigationBar />
+                    <NavigationBar name={data.name} picture={data.imgUrl}/>
                 </div>
                     <div className="div-pai">
                     <div className="botoesIndicadores">

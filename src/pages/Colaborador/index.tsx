@@ -66,34 +66,29 @@ const Colaborador = () => {
                         </div>
                         <div className='mt-8 justify-start'>
                             <p className='text-lg font-semibold mb-2'>Indicador X</p>
-                            <div className='flex'>
-                                <div className='flex align-middle  mb-4'>
-                                    <div className='bg-[#E51110] p-1 text-white rounded-md'>80%</div>
-                                    <div className='mx-4 text-lg font-semibold text-[#E51110]'>meta</div>
-                                </div>
-                                <div className='flex align-middle  mb-4'>
-                                    <div className='bg-[#626FD9] p-1 text-white rounded-md'>15%</div>
-                                    <div className='mx-4 text-lg font-semibold text-[#626FD9]'>supermeta</div>
-                                </div>
-                                <div className='flex align-middle  mb-4'>
-                                    <div className='bg-[#169aab] p-1 text-white rounded-md text-justify'>5%</div>
-                                    <div className='mx-4 text-lg font-semibold text-[#169aab]'>desafio</div>
-                                </div>
-                            </div>
-
-                            <p className='text-lg font-semibold mb-2'>Indicador Y</p>
-                            <div className='flex'>
-                                <div className='flex align-middle  mb-4'>
-                                    <div className='bg-[#E51110] p-1 text-white rounded-md'>60%</div>
-                                    <div className='mx-4 text-lg font-semibold text-[#E51110]'>meta</div>
-                                </div>
-                                <div className='flex align-middle  mb-4'>
-                                    <div className='bg-[#626FD9] p-1 text-white rounded-md'>5%</div>
-                                    <div className='mx-4 text-lg font-semibold text-[#626FD9]'>supermeta</div>
-                                </div>
-                                <div className='flex align-middle  mb-4'>
-                                    <div className='bg-[#169aab] p-1 text-white rounded-md text-justify'>1%</div>
-                                    <div className='mx-4 text-lg font-semibold text-[#169aab]'>desafio</div>
+                            <div>
+                                <div className='align-middle  mb-4'>
+                                    <div className='flex w-full  mt-2 mb-2'>
+                                        <h1 className='font-semibold text-sm'>Meta</h1>
+                                        <p className='ml-auto text-sm'>80%</p>
+                                    </div>
+                                    <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
+                                        <div className="bg-red-600 h-1.5 rounded-full dark:bg-red-600" style={{ width: '80%' }}></div>
+                                    </div>
+                                    <div className='flex w-full  mt-2 mb-2'>
+                                        <h1 className='font-semibold text-sm'>Supermeta</h1>
+                                        <p className='ml-auto text-sm'>50%</p>
+                                    </div>
+                                    <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
+                                        <div className="bg-[#626FD9] h-1.5 rounded-full dark:bg-[#626FD9]" style={{ width: '50%' }}></div>
+                                    </div>
+                                    <div className='flex w-full  mt-2 mb-2'>
+                                        <h1 className='font-semibold text-sm'>Desafio</h1>
+                                        <p className='ml-auto text-sm'>15%</p>
+                                    </div>
+                                    <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
+                                        <div className="bg-[#169aab] h-1.5 rounded-full dark:bg-[#169aab]" style={{ width: '15%' }}></div>
+                                    </div>
                                 </div>
                             </div>
                             

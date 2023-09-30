@@ -28,13 +28,15 @@ const Relatorio: React.FC = () => {
            <div className="div-item">
                 <div className="header-group">
                     <h1>Relatorio 1 </h1>
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
-</h2>
+                    <h2>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
+                    </h2>
                 </div>
                 <div className="header-group">
                     <h1>Relatorio 2</h1>
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
-</h2>
+                    <h2>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
+                    </h2>
                 </div>
             </div>
 

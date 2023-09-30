@@ -5,6 +5,7 @@ import Colaborador from "./pages/Colaborador";
 import HomePage from './pages/homepage/homepage';
 import Indicadores from './pages/indicadores/indicadores';
 import Relatorio from "./pages/relatorio/relatorio";
+import Colaboradores from "./pages/colaboradores/colaboradores";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/Relatorio",
     Component: Relatorio,
+  },
+  {
+    path: "/Colaboradores",
+    Component: Colaboradores,
   },
   
 ]);

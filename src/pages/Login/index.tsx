@@ -34,7 +34,7 @@ const Login = () => {
       })
       .then((responseData) => {
         console.log(responseData.id);
-        navigate(`/gestor/?id=${responseData.id}`, {replace: true});
+        navigate(`/HomePage/?id=${responseData.id}`, {replace: true});
       })
       .catch((error) => {
         console.error('Erro:', error);

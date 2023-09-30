@@ -27,8 +27,6 @@ const UserInfo = ({picture, name, cargo, email}: UserInfoProps) => {
 
                     </div>
                 </div>
-
-                
             </div>
         </div>
     </div>

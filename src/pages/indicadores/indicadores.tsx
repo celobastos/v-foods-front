@@ -14,7 +14,7 @@ const Indicadores: React.FC = () => {
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
             <SideMenu gestorId={data.id}/>
-            <main className="flex-grow bg-background-color"style={{ backgroundColor: '#FBFBFB' }}>
+            <main className="flex-grow bg-gray-50">
                 <div className="flex items-center">
                     <NavigationBar name={data.name} picture={data.imgUrl}/>
                 </div>

@@ -3,12 +3,13 @@ import UserInfo from '../../components/UserInfo';
 import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
 import useGestorData from '../../components/useGestorData/userGestorData';
+import { Link } from 'react-router-dom';
 
 export const PerfilGestor = () => {
 
     const data = useGestorData();
     return (
-        <div className='bg-[#fbfbfb] h-screen flex '>
+        <div className='bg-gray-100 h-screen flex '>
             <SideMenu gestorId={data.id}></SideMenu>
             <div>
                 <NavigationBar name={data.name} picture={data.imgUrl}></NavigationBar>
@@ -28,21 +29,23 @@ export const PerfilGestor = () => {
                 </div>
                 <div id='direita'>
                     <div className='flex'>
-                        <div className=' h-[138px] w-[218px] rounded-[14px] bg-black ml-16 p-4 flex justify-start'>
+                        <div className=' h-[148px] w-[228px] rounded-[14px] bg-black ml-16 p-4 flex justify-start'>
                             <div className=' text-white text-8xl font-bold z-10'>
                                 <p className='mr-4'>+</p>
                             </div>
-                            <div className='text-white  mt-8 font-semibold'>
+                            <div className='text-white  mt-11 font-semibold'>
                                 <p>Criar indicador</p>
                             </div>
 
                         </div>
-                        <div className='h-[138px] w-[218px] rounded-[14px] bg-[#E51110] ml-4 flex px-6 pt-10'>
+                        <Link to={`/addColaborador?id=${data.id}`}>
+                        <div className='h-[148px] w-[228px] rounded-[14px] bg-[#E51110] ml-4 flex px-6 pt-10'>
                             <img src={'https://icon-library.com/images/profile-icon-white/profile-icon-white-1.jpg'} className=' w-32 h-16 mr-4'></img>
                             <div className=' text-white font-semibold mt-2'>
                                 <p>Adicionar colaborador</p>
                             </div>
                         </div>
+                        </Link>
                     </div>
                     <div className={styles['status']}>
                         <div className='flex  mt-5'>

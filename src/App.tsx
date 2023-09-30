@@ -4,6 +4,7 @@ import { PerfilGestor } from "./pages/Perfil";
 import Colaborador from "./pages/Colaborador";
 import HomePage from './pages/homepage/homepage';
 import Indicadores from './pages/indicadores/indicadores';
+import CadastroColaborador from "./pages/AddColaborador";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/Indicadores",
     Component: Indicadores,
+  },
+  {
+    path: "/AddColaborador",
+    Component: CadastroColaborador,
   },
 ]);
 export default function App() {

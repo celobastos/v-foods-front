@@ -11,11 +11,12 @@
 }
 .status {
     width: 513px;
-    height: 313px;
+    /*height: 313px;*/
     margin-top: 55px;
     border-radius: 14px;
     border: 1px solid #d6d6d6;
     padding-left: 44px;
     padding-right: 44px;
+    padding-bottom: 44px;
     background-color: #FFFFFF;
 }

@@ -69,7 +69,7 @@ const CadastroColaborador = () => {
   return (
     <div className="flex h-screen">
       <SideMenu gestorId={data.id}></SideMenu>
-      <div className='w-full bg-gray-100'>
+      <div className='w-full bg-gray-50'>
       <NavigationBar name={data.name} picture={data.imgUrl}></NavigationBar>
       <div className='flex items-center justify-center mt-2'>
       <div className="w-full max-w-md bg-white p-11 rounded-3xl border border-gray-300 ">

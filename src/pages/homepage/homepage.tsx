@@ -32,7 +32,7 @@ const HomePage: React.FC = () => {
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
             <SideMenu gestorId={data.id}/>
-            <main className="flex-grow bg-gray-100">
+            <main className="flex-grow bg-gray-50">
                 <div className="flex items-center">
                     <div className="flex flex-col space-y-4"style={{ marginLeft: '30px' }} >
                         <h1 className="text-3xl text-black font-bold">Olá, {data.name}!</h1>

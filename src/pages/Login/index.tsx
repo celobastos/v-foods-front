@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './index.module.css';
 import { useNavigate } from 'react-router-dom';
+import api from '../../api';
 
 const Login = () => {
 
@@ -17,37 +18,28 @@ const Login = () => {
         email: email,
         password: password
       };
-      await fetch('http://localhost:3000/api/auth/sign-in', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then((response) => {
-        if (response.ok) {
-          return response.json();
-        }else{
-          throw new Error('Erro na requisição');
-          //
+
+      const response = await api.post('/auth/sign-in', formData);
+
+      if(response.status === 200){
+        if(response.headers.authorization){
+          localStorage.setItem('token', response.headers.authorization);
         }
-        
-      })
-      .then((responseData) => {
-        console.log(responseData.id);
-        navigate(`/HomePage/?id=${responseData.id}`, {replace: true});
-      })
-      .catch((error) => {
-        console.error('Erro:', error);
+        console.log(response.data.id);
+        navigate(`/HomePage/?id=${response.data.id}`, {replace: true});
+      } else if (response.status === 401){
         messageUpdate('Email ou senha inválidos');
-      });
-      //window.open(`/gest?id=${data.data.id}`, "_self")
-      //navigate('/gestor', {replace: true});
-    } catch (error) {
+      } else {
+        messageUpdate('Erro na requisição');
+      }
+    }
+    catch (error) {
       console.log(error);
       messageUpdate('Email ou senha inválidos');
       console.log('Email ou senha inválidos')
     }
   }
+
   const validate = () => {
     let result = true;
     if(email === ' ||' || email === null){

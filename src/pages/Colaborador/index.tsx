@@ -18,11 +18,7 @@ const Colaborador = () => {
 
   useEffect(() => {
     api
-      .get("/colaborator/", {
-        params: {
-          colabId: colabId,
-        },
-      })
+      .get(`/colaborator/${colabId}`)
       .then((response) => {
         setcolabData(response.data);
       })

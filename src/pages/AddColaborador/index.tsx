@@ -40,7 +40,7 @@ const CadastroColaborador = () => {
       const response = await api.post("/colaborator/create", colaborador);
 
       if (response.status !== 200) {
-        flag = 0;
+        flag = 1;
         messageUpdate("Problema ao cadastrar colaborador");
       } else {
         flag = 1;

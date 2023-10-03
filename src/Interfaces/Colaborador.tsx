@@ -1,11 +1,10 @@
 export default interface Colaborador{
     id: string | number | null,
-    teamId: string | number | null,
+    managerId: string | number | null,
     name: string,
-    address: string,
     email: string,
     cellphone: string
-    imgURL: string,
+    imgUrl: string,
     dateBirth: string,
-    CEP: string;
+    address: string;
 }

@@ -14,12 +14,11 @@ const CadastroColaborador = () => {
   const [message, messageUpdate] =useState('');
   const [colaborador, setColaborador] = useState<Colaborador>({
     id: 0,
-    teamId: idGestor,
+    managerId: idGestor,
     name: '',
     address: '',
-    CEP: '',
     email: '',
-    imgURL: '',
+    imgUrl: '',
     dateBirth: '',
     cellphone: ''
   });
@@ -33,7 +32,8 @@ const CadastroColaborador = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     let flag = 1;
     e.preventDefault();
-    await setColaborador({ ...colaborador, ['teamId']: data.id });
+    await setColaborador({ ...colaborador, ['managerId']: data.id });
+    console.log(colaborador);
     try {
       const response = await fetch('http://localhost:3000/api/colaborator/create', {
         method: 'POST',
@@ -93,6 +93,22 @@ const CadastroColaborador = () => {
         </div>
 
         <div className="mb-4">
+          <label htmlFor="cellphone" className="block text-sm font-medium text-gray-700">
+            
+          </label>
+          <input
+            type="text"
+            id="cellphone"
+            name="cellphone"
+            value={colaborador.cellphone}
+            onChange={handleChange}
+            required
+            className={styles['custom-input']}
+            placeholder='Telefone'
+          />
+        </div>
+
+        <div className="mb-4">
           <label htmlFor="address" className="block text-sm font-medium text-gray-700">
             
           </label>
@@ -101,22 +117,6 @@ const CadastroColaborador = () => {
             id="address"
             name="address"
             value={colaborador.address}
-            onChange={handleChange}
-            required
-            className={styles['custom-input']}
-            placeholder='Endereço'
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="CEP" className="block text-sm font-medium text-gray-700">
-            
-          </label>
-          <input
-            type="text"
-            id="CEP"
-            name="CEP"
-            value={colaborador.CEP}
             onChange={handleChange}
             required
             className={styles['custom-input']}
@@ -142,13 +142,13 @@ const CadastroColaborador = () => {
         <p className=' text-sm text-red-700 -mt-2 mb-4 ml-2'>{message}</p>
 
         <div className="mb-4">
-          <label htmlFor="imgURL" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="imgUrl" className="block text-sm font-medium text-gray-700">
             
           </label>
           <input
             type="text"
-            id="imgURL"
-            name="imgURL"
+            id="imgUrl"
+            name="imgUrl"
             onChange={handleChange}
             required
             className={styles['custom-input']}

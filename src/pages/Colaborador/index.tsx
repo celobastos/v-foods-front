@@ -14,7 +14,7 @@ const Colaborador = () => {
     ? new URLSearchParams(window.location.search).get('colab')
     : 0;
 
-    const [colabData, setcolabData] = useState<Colaborador>({ name: '', address: '', email: '', imgURL: '', id: colabId, teamId: 0, cellphone: '', dateBirth: '', CEP: '' });
+    const [colabData, setcolabData] = useState<Colaborador>({ name: '', email: '', imgUrl: '', id: colabId, managerId: 0, cellphone: '', dateBirth: '', address: '' });
 
     useEffect(() => {
         const ApiUrl = `http://localhost:3000/api/colaborator/${colabId}`; 
@@ -43,7 +43,7 @@ const Colaborador = () => {
                 
                 <div id='esquerda'>
                     <div className='p-2 bg-[#E51110] text-white rounded-md ml-[60px] w-32 mb-4'>Criar indicador</div>
-                    <UserInfo picture={colabData.imgURL} name={colabData.name} cargo='' email={colabData.email}/>
+                    <UserInfo picture={colabData.imgUrl} name={colabData.name} cargo='' email={colabData.email} cellphone={colabData.cellphone}/>
                     <div className={styles['metas']}>
                         <h1 className=' text-lg font-bold mt-5'>Metas concluidas deste mês</h1>
                         <p className='text-gray-500 text-right text-sm'>23 de Setembro</p>

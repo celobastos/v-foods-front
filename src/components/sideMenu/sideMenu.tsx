@@ -39,7 +39,7 @@ const SideMenu = ({gestorId}: SideMenuProps) => {
                         <Link to={`/Colaborador?id=${gestorId}`}>
                             <a href="#" className="text-gray-700 flex items-center space-x-6">
                                 <img src={RankingIcon} alt="Home Icon" className="w-6 h-6" />
-                                <span>Ranking</span>
+                                <span>Colaboradores</span>
                             </a>
                         </Link>
                     </li>

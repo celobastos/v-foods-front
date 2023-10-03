@@ -7,12 +7,17 @@ const api = axios.create({
 });
 
 // interceptor para todas as requisições
-api.interceptors.request.use(config => {
-  const token = localStorage.getItem('token'); 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`; // Adiciona o token jwt no cabeçalho de autorização
+api.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token'); // Obtenha o token do armazenamento local
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`; // Adicione o token ao cabeçalho Authorization
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
   }
-  return config;
-});
+);
 
 export default api;

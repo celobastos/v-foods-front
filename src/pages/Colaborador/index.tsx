@@ -13,17 +13,8 @@ const Colaborador = () => {
   const colabId =
     typeof window !== "undefined" && window.location.search.includes("colab=") ? new URLSearchParams(window.location.search).get("colab") : 0;
 
-  const [colabData, setcolabData] = useState<Colaborador>({
-    name: "",
-    address: "",
-    email: "",
-    imgURL: "",
-    id: colabId,
-    teamId: 0,
-    cellphone: "",
-    dateBirth: "",
-    CEP: "",
-  });
+    const [colabData, setcolabData] = useState<Colaborador>({ name: '', email: '', imgUrl: '', id: colabId, managerId: 0, cellphone: '', dateBirth: '', address: '' });
+
 
   useEffect(() => {
     api
@@ -40,22 +31,26 @@ const Colaborador = () => {
       });
   }, [colabData, colabId]);
 
-  return (
-    <div className="bg-gray-50 h-screen flex  pr-36">
-      <SideMenu gestorId={data.id}></SideMenu>
-      <div>
-        <NavigationBar name={data.name} picture={data.imgUrl}></NavigationBar>
-        <div className="flex pt-[50px]">
-          <div id="esquerda">
-            <div className="p-2 bg-[#E51110] text-white rounded-md ml-[60px] w-32 mb-4">Criar indicador</div>
-            <UserInfo picture={colabData.imgURL} name={colabData.name} cargo="" email={colabData.email} />
-            <div className={styles["metas"]}>
-              <h1 className=" text-lg font-bold mt-5">Metas concluidas deste mês</h1>
-              <p className="text-gray-500 text-right text-sm">23 de Setembro</p>
-              <div className=" flex mt-[10px] justify-start">
-                <p className="text-2xl font-bold">60%</p>
-                <div className="text-sm h-7 w-56 rounded-md bg-teal-400 ml-8 mt-1 p-[2px] pl-2">
-                  <span className=" font-semibold">4.7%</span> em comparaçao ao mês anterior
+    return (
+        <div className='bg-gray-50 h-screen flex  pr-36'>
+            <SideMenu gestorId={data.id}></SideMenu>
+            <div>
+            <NavigationBar name={data.name} picture={data.imgUrl}></NavigationBar>
+            <div className='flex pt-[50px]'>
+                
+                <div id='esquerda'>
+                    <div className='p-2 bg-[#E51110] text-white rounded-md ml-[60px] w-32 mb-4'>Criar indicador</div>
+                    <UserInfo picture={colabData.imgUrl} name={colabData.name} cargo='' email={colabData.email} cellphone={colabData.cellphone}/>
+                    <div className={styles['metas']}>
+                        <h1 className=' text-lg font-bold mt-5'>Metas concluidas deste mês</h1>
+                        <p className='text-gray-500 text-right text-sm'>23 de Setembro</p>
+                        <div className=' flex mt-[10px] justify-start'>
+                            <p className='text-2xl font-bold'>60%</p>
+                            <div className='text-sm h-7 w-56 rounded-md bg-teal-400 ml-8 mt-1 p-[2px] pl-2'><span className=' font-semibold'>4.7%</span> em comparaçao ao mês anterior</div>
+                        </div>
+                        <p className='text-gray-500 text-sm'>concluídos</p>
+                        <img src='images\graph1.png'></img>
+                    </div>
                 </div>
               </div>
               <p className="text-gray-500 text-sm">concluídos</p>

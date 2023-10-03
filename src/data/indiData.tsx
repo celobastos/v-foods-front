@@ -22,5 +22,29 @@ export const indiData =[
       "challenge": 150,
       "result": 0,
       "resultDate": "2023-10-02T22:16:43.352Z"
+    },
+    {
+      "colaboratorId": 1,
+      "indicatorId": 2,
+      "month": 1,
+      "year": 2023,
+      "weight": 1,
+      "meta": 150,
+      "superMeta": 160,
+      "challenge": 340,
+      "result": 0,
+      "resultDate": "2023-10-02T22:16:43.352Z"
+    },
+    {
+      "colaboratorId": 1,
+      "indicatorId": 2,
+      "month": 2,
+      "year": 2023,
+      "weight": 1,
+      "meta": 70,
+      "superMeta": 100,
+      "challenge": 220,
+      "result": 0,
+      "resultDate": "2023-10-02T22:16:43.352Z"
     }
   ]

@@ -6,6 +6,8 @@ import useGestorData from "../../components/useGestorData/userGestorData";
 import Colaborador from "../../Interfaces/Colaborador";
 import { useState, useEffect } from "react";
 import api from "../../api";
+import Graph from "../../components/Graph";
+import { indiData } from "../../data/indiData";
 
 const Colaborador = () => {
   const data = useGestorData();
@@ -37,20 +39,14 @@ const Colaborador = () => {
                     <div id='esquerda'>
                         <div className='p-2 bg-[#E51110] text-white rounded-md ml-[60px] w-32 mb-4'>Criar indicador</div>
                         <UserInfo picture={colabData.imgUrl} name={colabData.name} cargo='' email={colabData.email} cellphone={colabData.cellphone}/>
+                        
                         <div className={styles['metas']}>
-                            <h1 className=' text-lg font-bold mt-5'>Metas concluidas deste mês</h1>
-                            <p className='text-gray-500 text-right text-sm'>23 de Setembro</p>
-                            <div className=' flex mt-[10px] justify-start'>
-                                <p className='text-2xl font-bold'>60%</p>
-                                <div className='text-sm h-7 w-56 rounded-md bg-teal-400 ml-8 mt-1 p-[2px] pl-2'><span className=' font-semibold'>4.7%</span> em comparaçao ao mês anterior</div>
-                            </div>
-                            <p className='text-gray-500 text-sm'>concluídos</p>
-                            <img src='images\graph1.png'></img>
+                         <Graph indicatorData={indiData}></Graph>
                         </div>
                     </div>
                 
                     <div id="direita" className=" ml-11">
-                        <div className=" text-right  ml-auto flex">
+                        <div className=" text-right  ml-auto flex mb-4">
                             <div className=" py-2 px-4 border-2 ml-auto rounded-md border-[#d6d6d6] bg-white">Setembro</div>
                             <div className="p-2 bg-black text-white rounded-md ml-4">Baixar PDF</div>
                         </div>

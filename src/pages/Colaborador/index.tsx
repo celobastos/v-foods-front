@@ -27,7 +27,7 @@ const Colaborador = () => {
 
   useEffect(() => {
     api
-      .get("api/colaborator/", {
+      .get("/colaborator/", {
         params: {
           colabId: colabId,
         },

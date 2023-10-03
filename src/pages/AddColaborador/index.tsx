@@ -34,9 +34,8 @@ const CadastroColaborador = () => {
     await setColaborador({ ...colaborador, ['managerId']: data.id });
     console.log(colaborador);
     try {
-      let flag = 1;
       e.preventDefault();
-      await setColaborador({ ...colaborador, ["teamId"]: data.id });
+      await setColaborador({ ...colaborador, ["managerId"]: data.id });
 
       const response = await api.post("/colaborator/create", colaborador);
 
@@ -82,80 +81,67 @@ const CadastroColaborador = () => {
                 />
               </div>
 
-        <div className="mb-4">
-          <label htmlFor="cellphone" className="block text-sm font-medium text-gray-700">
-            
-          </label>
-          <input
-            type="text"
-            id="cellphone"
-            name="cellphone"
-            value={colaborador.cellphone}
-            onChange={handleChange}
-            required
-            className={styles['custom-input']}
-            placeholder='Telefone'
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-            
-          </label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            value={colaborador.address}
-            onChange={handleChange}
-            required
-            className={styles['custom-input']}
-            placeholder='CEP'
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-            
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={colaborador.email}
-            onChange={handleChange}
-            required
-            className={styles['custom-input']}
-            placeholder='Email'
-          />
-        </div>
-        <p className=' text-sm text-red-700 -mt-2 mb-4 ml-2'>{message}</p>
-
-        <div className="mb-4">
-          <label htmlFor="imgUrl" className="block text-sm font-medium text-gray-700">
-            
-          </label>
-          <input
-            type="text"
-            id="imgUrl"
-            name="imgUrl"
-            onChange={handleChange}
-            required
-            className={styles['custom-input']}
-            placeholder='imagem de perfil (URL)'
-          />
-        </div>
-
               <div className="mb-4">
-                <label htmlFor="imgURL" className="block text-sm font-medium text-gray-700"></label>
+                <label htmlFor="cellphone" className="block text-sm font-medium text-gray-700">
+                  
+                </label>
                 <input
                   type="text"
-                  id="imgURL"
-                  name="imgURL"
+                  id="cellphone"
+                  name="cellphone"
+                  value={colaborador.cellphone}
                   onChange={handleChange}
                   required
-                  className={styles["custom-input"]}
-                  placeholder="imagem de perfil (URL)"
+                  className={styles['custom-input']}
+                  placeholder='Telefone'
+                />
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                  
+                </label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  value={colaborador.address}
+                  onChange={handleChange}
+                  required
+                  className={styles['custom-input']}
+                  placeholder='CEP'
+                />
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={colaborador.email}
+                  onChange={handleChange}
+                  required
+                  className={styles['custom-input']}
+                  placeholder='Email'
+                />
+              </div>
+              <p className=' text-sm text-red-700 -mt-2 mb-4 ml-2'>{message}</p>
+
+              <div className="mb-4">
+                <label htmlFor="imgUrl" className="block text-sm font-medium text-gray-700">
+                  
+                </label>
+                <input
+                  type="text"
+                  id="imgUrl"
+                  name="imgUrl"
+                  onChange={handleChange}
+                  required
+                  className={styles['custom-input']}
+                  placeholder='imagem de perfil (URL)'
                 />
               </div>
 

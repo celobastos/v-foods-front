@@ -1,0 +1,171 @@
+
+/* Colaboradores.css */
+.colab-tabela-pai {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.colab-tabela-header {
+    display: flex;
+    background-color: red;
+    border-radius: 11px;
+    
+    text-align: left;
+    height: 44px;
+    padding-right: 40%;
+    color: white;
+}
+
+.colab-campo {
+    flex-grow: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.colab-campo-nome {
+    width: 300px;
+    margin-left: 10%;
+}
+
+.colab-campo-cod {
+    width: 400px;
+    padding-left: 19%;
+}
+
+.colab-campo-data {
+    width: 200px;
+    padding-left: 12%;
+    text-align: center;
+}
+
+.colab-tabela-data {
+    width: 100%;
+    max-height: 500px; 
+    overflow-y: auto;
+}
+.colab-tabela-data::-webkit-scrollbar {
+    width: 12px;
+    margin:3%;
+  }
+  
+  .colab-tabela-data::-webkit-scrollbar-thumb {
+    background-color: #ee0a0a; 
+    border-radius: 10px; 
+  }
+  
+  .colab-tabela-data::-webkit-scrollbar-thumb:hover {
+    background-color: #ff0000; 
+  }
+
+.colab-data-row {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    padding-top: 3%;
+}
+
+.colab-data-campo {
+    flex-grow: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.colab-nome-colaborador {
+    display: flex;
+    align-items: center;
+    width: 170px;
+    overflow: hidden;
+    text-align: left; 
+}
+
+.colab-nome-text {
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left; 
+}
+
+
+.colab-icon-classname {
+    margin-right: 10px;
+    width: 60px;
+    height: 50px;
+}
+
+.colab-field-cod {
+    width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    
+}
+
+.colab-field-data {
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-right: 3%;
+    
+}
+.ver-perfil-btn {
+    background-color: white;
+    color: #E51110;
+    border: 1px solid red;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 11px;
+    margin-right: 5%;
+    width: 122px;
+    height: 29px;
+    font-size: 11px;
+  }
+  .clickable-square {
+    width: 31px;
+    height: 29px;
+    cursor: pointer;
+    border-radius: 11px;
+    margin-right: 10%;
+    border: 1px solid #E51110;
+
+}
+
+.clickable-square.clicked {
+    background-color: red;
+    border-radius: 11px;
+}
+
+.colab-email-text {
+    font-size: 0.8rem; 
+    color: grey; 
+  }  
+  .colab-tabela-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 5%;
+}
+
+.colab-time {
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 2px solid red; 
+    padding-bottom: 1px;
+    
+}
+
+.criar-indicador-btn {
+    background-color: red;
+    color: #ffffff;
+    border: 1px solid red;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 11px;
+   margin-right: -9px;
+    width: 122px; 
+    height: 29px;
+    font-size: 11px;
+    margin-bottom: 1%;
+}

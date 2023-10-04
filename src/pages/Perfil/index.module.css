@@ -16,26 +16,41 @@
 
 }
 .metas {
-    width: 513px;
+    width: 713px;
     /*height: 313px;*/
-    margin-top: 40px;
     margin-left: 60px;
+    border-radius: 14px;
+    border: 1px solid #d6d6d6;
+    padding : 20px;
+    background-color: #FFFFFF;
+}
+.status {
+    width: 413px;
+    height: 300px;
+    margin-top: 165px;
+    margin-left: 3rem;
     border-radius: 14px;
     border: 1px solid #d6d6d6;
     padding-left: 44px;
     padding-right: 44px;
     background-color: #FFFFFF;
-    padding-bottom: 44px;
 }
-.status {
-    width: 513px;
-    height: 313px;
-    margin-top: 55px;
-    margin-left: 4rem/* 64px */;
+.addColab {
+    width: 413px;
+    height: 130px;
+    margin-top: 20px;
+    margin-left: 3rem;
     border-radius: 14px;
     border: 1px solid #d6d6d6;
-    padding-left: 44px;
-    padding-right: 44px;
+    background-color: #FFFFFF;
+}
+.calendar {
+    width: 713px;
+    /*height: 313px;*/
+    margin-left: 60px;
+    margin-top: 20px;
+    border-radius: 14px;
+    /*border: 1px solid #d6d6d6;*/
     background-color: #FFFFFF;
 }
 .colaboradores {

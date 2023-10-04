@@ -40,7 +40,7 @@ const router = createBrowserRouter([
   {
     path: "/AddColaborador",
     Component: CadastroColaborador,
-  },
+  }
 ]);
 export default function App() {
   return <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />;

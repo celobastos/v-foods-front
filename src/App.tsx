@@ -7,7 +7,6 @@ import Indicadores from './pages/indicadores/indicadores';
 import Relatorio from "./pages/relatorio/relatorio";
 import Colaboradores from "./pages/colaboradores/colaboradores";
 import CadastroColaborador from "./pages/AddColaborador";
-import Graph from "./components/Graph";
 
 const router = createBrowserRouter([
   {
@@ -41,11 +40,7 @@ const router = createBrowserRouter([
   {
     path: "/AddColaborador",
     Component: CadastroColaborador,
-  },
-  {
-    path: "/Graph",
-    Component: Graph,
-  },
+  }
 ]);
 export default function App() {
   return <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />;

@@ -7,7 +7,8 @@ import Colaborador from "../../Interfaces/Colaborador";
 import { useState, useEffect } from "react";
 import api from "../../api";
 import Graph from "../../components/Graph";
-import { indiData } from "../../data/indiData";
+import IndicatorData from "../../Interfaces/indiData";
+import Indicador from "../../Interfaces/Indicador";
 
 const Colaborador = () => {
   const data = useGestorData();
@@ -16,6 +17,20 @@ const Colaborador = () => {
     typeof window !== "undefined" && window.location.search.includes("colab=") ? new URLSearchParams(window.location.search).get("colab") : 0;
 
     const [colabData, setcolabData] = useState<Colaborador>({ name: '', email: '', imgUrl: '', id: colabId, managerId: 0, cellphone: '', dateBirth: '', address: '' });
+    const [indicadorData, setIndicadorData] = useState<IndicatorData[]>([{ 
+      colaboratorId: 0,
+      indicatorId: 0,
+      month: 0,
+      year: 0,
+      weight: 0,
+      meta: 0,
+      superMeta: 0,
+      challenge: 0,
+      result: 0,
+      resultDate: ''
+    
+    }]);
+    const [task, setTask] = useState<Indicador>({ id: 0, managerId: 0, name: '', description: ''});
 
 
   useEffect(() => {
@@ -29,6 +44,31 @@ const Colaborador = () => {
       });
   }, [colabData, colabId]);
 
+  useEffect(() => {
+    api
+      .get(`/assign/all/colaborator/${colabData.id}`)
+      .then((response) => {
+        if(response.data){
+          setIndicadorData(response.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+      api
+      .get(`/indicator/${indicadorData[indicadorData.length-1]?.indicatorId}`)
+      .then((response) => {
+        if(response.data){
+          setTask(response.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, [colabData.id, indicadorData]);
+  const lastIndicator: IndicatorData = indicadorData[indicadorData.length-1];
+
     return (
         <div className='bg-gray-50 h-screen flex  pr-36'>
             <SideMenu gestorId={data.id}></SideMenu>
@@ -41,7 +81,7 @@ const Colaborador = () => {
                         <UserInfo picture={colabData.imgUrl} name={colabData.name} cargo='' email={colabData.email} cellphone={colabData.cellphone}/>
                         
                         <div className={styles['metas']}>
-                         <Graph indicatorData={indiData}></Graph>
+                         <Graph indicatorData={indicadorData}></Graph>
                         </div>
                     </div>
                 
@@ -55,31 +95,32 @@ const Colaborador = () => {
                                 <h1 className=" text-lg font-bold">Resultados recentes</h1>
                             </div>
                             <div className="mt-8 justify-start">
-                                <p className="text-lg font-semibold mb-2">Indicador X</p>
+                                <p className="text-lg font-semibold mb-2">{task.name}</p>
+                                <p className="text-gray-500 text-sm">{task.description}</p>
                                 <div>
-                                <div className="align-middle  mb-4">
-                                    <div className="flex w-full  mt-2 mb-2">
-                                    <h1 className="font-semibold text-sm">Meta</h1>
-                                    <p className="ml-auto text-sm">80%</p>
-                                    </div>
-                                    <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
-                                    <div className="bg-red-600 h-1.5 rounded-full dark:bg-red-600" style={{ width: "80%" }}></div>
-                                    </div>
-                                    <div className="flex w-full  mt-2 mb-2">
-                                    <h1 className="font-semibold text-sm">Supermeta</h1>
-                                    <p className="ml-auto text-sm">50%</p>
-                                    </div>
-                                    <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
-                                    <div className="bg-[#626FD9] h-1.5 rounded-full dark:bg-[#626FD9]" style={{ width: "50%" }}></div>
-                                    </div>
-                                    <div className="flex w-full  mt-2 mb-2">
-                                    <h1 className="font-semibold text-sm">Desafio</h1>
-                                    <p className="ml-auto text-sm">15%</p>
-                                    </div>
-                                    <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
-                                    <div className="bg-[#169aab] h-1.5 rounded-full dark:bg-[#169aab]" style={{ width: "15%" }}></div>
-                                    </div>
-                                </div>
+                                  <div className="align-middle  mb-4">
+                                      <div className="flex w-full  mt-2 mb-2">
+                                      <h1 className="font-semibold text-sm">Meta</h1>
+                                      <p className="ml-auto text-sm">{Math.round((lastIndicator?.meta)/100*100)}%</p>
+                                      </div>
+                                      <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
+                                      <div className="bg-red-600 h-1.5 rounded-full dark:bg-red-600" style={{ width: `${(lastIndicator?.meta)/100*100}%` }/*Subustitur 100 pela meta do indicador*/ }></div>
+                                      </div>
+                                      <div className="flex w-full  mt-2 mb-2">
+                                      <h1 className="font-semibold text-sm">Supermeta</h1>
+                                      <p className="ml-auto text-sm">{Math.round((lastIndicator?.superMeta)/200*100)}%</p>
+                                      </div>
+                                      <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
+                                      <div className="bg-[#626FD9] h-1.5 rounded-full dark:bg-[#626FD9]" style={{ width: `${(lastIndicator?.superMeta)/200*100}%` } /*Subustitur 200 pela superMeta do indicador*/}></div>
+                                      </div>
+                                      <div className="flex w-full  mt-2 mb-2">
+                                      <h1 className="font-semibold text-sm">Desafio</h1>
+                                      <p className="ml-auto text-sm">{Math.round((lastIndicator?.challenge)/500*100)}%</p>
+                                      </div>
+                                      <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
+                                      <div className="bg-[#169aab] h-1.5 rounded-full dark:bg-[#169aab]" style={{ width: `${(lastIndicator?.challenge)/500*100}%` } /*Subustitur 500 pelo desafio do indicador*/}></div>
+                                      </div>
+                                  </div>
                                 </div>
                             </div>
                         </div>

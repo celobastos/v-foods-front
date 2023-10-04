@@ -16,10 +16,10 @@ interface GraphProps {
 }
 
 const Graph = ({indicatorData}: GraphProps) => {
-    const indiDataWithMonthNames = indicatorData.map(data => ({
-        ...data,
-        month: mapMonthNumberToName(data.month)
-      }));
+  const indiDataWithMonthNames = indicatorData.map(data => ({
+      ...data,
+      month: mapMonthNumberToName(data.month)
+  }));
 
   return (
     <div>

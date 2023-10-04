@@ -6,10 +6,91 @@ import search from '../../../public/search.svg';
 import profile from '../../../public/profile.svg';
 import GestorInfo from '../../components/GestorInfo';
 import { Link } from 'react-router-dom';
+import Colaborador from '../../Interfaces/Colaborador';
+import Indicador from '../../Interfaces/Indicador';
+import IndicatorData from '../../Interfaces/indiData';
+import { useEffect, useState } from 'react';
+import api from '../../api';
 
 export const PerfilGestor = () => {
 
+    const gesId =
+    typeof window !== "undefined" && window.location.search.includes("id=") ? new URLSearchParams(window.location.search).get("id") : 0;
     const data = useGestorData();
+    const [colabData, setcolabData] = useState<Colaborador[]>([{ name: '', email: '', imgUrl: '', id: 0, managerId: 0, cellphone: '', dateBirth: '', address: '' }]);
+    const [assignData, setAssignData] = useState<IndicatorData[]>([{ 
+      colaboratorId: 0,
+      indicatorId: 0,
+      month: 0,
+      year: 0,
+      weight: 0,
+      meta: 0,
+      superMeta: 0,
+      challenge: 0,
+      result: 0,
+      resultDate: ''
+    
+    }]);
+    const task: Indicador[] = [{ id: 0, managerId: 0, name: '', description: ''}];
+
+    //Get All Assigns from Manager
+    useEffect(() => {
+        api
+          .get(`/colaborator/all/${gesId}`)
+          .then((response) => {
+            setcolabData(response.data);
+            //console.log(colabData);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+
+        api
+          .get(`/assign/all/manager/${gesId}`)
+          .then((response) => {
+            setAssignData(response.data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+        
+        api
+        .get(`/indicator/${assignData[0]?.indicatorId}`)
+        .then((response) => {
+            if(response.data){
+            task[0] = response.data;
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+
+        api
+        .get(`/indicator/${assignData[1]?.indicatorId}`)
+        .then((response) => {
+            if(response.data){
+            task[1] = response.data;
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+        
+
+        
+    }, [assignData, colabData, gesId, task]);
+    //Calculo da meta total a ser alcançada
+    const metaTotal: number = 100*assignData.length;
+    //Calculo da meta total alcançada pelo time
+    let metaAchive = 0;
+
+    assignData.forEach((item) => {
+        metaAchive += item.meta;
+    });
+
+    
+
+
     return (
         <div className='bg-gray-50 h-screen flex '>
             <SideMenu gestorId={data.id}></SideMenu>
@@ -24,25 +105,25 @@ export const PerfilGestor = () => {
                             <p className=' ml-auto text-sm  text-red-600 font-semibold'>ver todos os colaboradores  </p>
                         </div>
                         
-                        <p className='text-gray-500 text-sm'>Acompanhe o desenvolvimento dos indicadores criados este mês</p>
+                        <p className='text-gray-500 text-sm'>Acompanhe o desenvolvimento dos indicadores criados este mês </p>
                         <div className='flex'>
-                            <img className=' rounded-full w-11 h-11 mt-8 -mr-2' src='https://m.media-amazon.com/images/M/MV5BYWUzNzA4YWUtYWViYy00Zjg1LWE4ODEtZDYwOTAzMTg3YTZhXkEyXkFqcGdeQXVyNjg0NjE4OTM@._V1_QL75_UX140_CR0,12,140,140_.jpg'></img>
-                            <img className=' rounded-full w-11 h-11 mt-8 -mr-2' src='https://a.wattpad.com/useravatar/Hakkaiproperty.256.605649.jpg'></img>
-                            <img className=' rounded-full w-11 h-11 mt-8 -mr-2' src='https://profile-images.xing.com/images/559ea8811fd76869d487e305883cb8a0-1/marine-messager.256x256.jpg'></img>
+                            <img className=' rounded-full w-11 h-11 mt-8 -mr-2' src={colabData[0]?.imgUrl}></img>
+                            <img className=' rounded-full w-11 h-11 mt-8 -mr-2' src={colabData[1]?.imgUrl}></img>
+                            <img className=' rounded-full w-11 h-11 mt-8 -mr-2' src={colabData[2]?.imgUrl}></img>
 
                         
                         </div>
                         <div className='flex w-full  mt-2 mb-2'>
                             <h1 className='font-semibold text-sm'>Andamento Geral</h1>
-                            <p className='ml-auto text-sm'>80%</p>
+                            <p className='ml-auto text-sm'>{Math.round(metaAchive/metaTotal*100)}%</p>
                             
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
-                            <div className="bg-red-600 h-1.5 rounded-full dark:bg-red-600" style={{ width: '80%' }}></div>
+                            <div className="bg-red-600 h-1.5 rounded-full dark:bg-red-600" style={{ width: `${metaAchive/metaTotal*100}%` }}></div>
                         </div>
                     </div>
+                    <div className="p-2 bg-black text-white rounded-md ml-auto w-24 mt-4">Baixar PDF</div>
                     <div className={styles['calendar']}>
-                        Calendar
                     </div>
                 </div>
                 <div id='direita'>
@@ -62,27 +143,27 @@ export const PerfilGestor = () => {
                         <div className='flex pt-4 w-full'>
                             <div className=' mr-auto w-1/2'>
                                 <div className='flex w-full  mt-2 mb-2'>
-                                    <h1 className='font-semibold text-sm'>Indicador X</h1>
+                                    <h1 className='font-semibold text-sm'>{task[0]?.name}</h1>
                                 </div>
                                 <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
                                     <div className="bg-red-600 h-1.5 rounded-full dark:bg-red-600" style={{ width: '80%' }}></div>
                                 </div>
                             </div>
                             <div className=' ml-auto'>
-                                <img className=' rounded-full w-11 h-11 mt-2 mr-4' src='https://profile-images.xing.com/images/559ea8811fd76869d487e305883cb8a0-1/marine-messager.256x256.jpg'></img>
+                                <img className=' rounded-full w-11 h-11 mt-2 mr-4' src={colabData[0]?.imgUrl}></img>
                             </div>
                         </div>
                         <div className='flex pt-4 w-full'>
                             <div className=' mr-auto w-1/2'>
                                 <div className='flex w-full  mt-2 mb-2'>
-                                    <h1 className='font-semibold text-sm'>Indicador Y</h1>
+                                    <h1 className='font-semibold text-sm'>{task[1]?.name}</h1>
                                 </div>
                                 <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
-                                    <div className="bg-red-600 h-1.5 rounded-full dark:bg-red-600" style={{ width: '80%' }}></div>
+                                    <div className="bg-[#626FD9] h-1.5 rounded-full dark:bg-[#169aab]" style={{ width: '50%' }}></div>
                                 </div>
                             </div>
                             <div className=' ml-auto'>
-                                <img className=' rounded-full w-11 h-11 mt-2 mr-4' src='https://m.media-amazon.com/images/M/MV5BYWUzNzA4YWUtYWViYy00Zjg1LWE4ODEtZDYwOTAzMTg3YTZhXkEyXkFqcGdeQXVyNjg0NjE4OTM@._V1_QL75_UX140_CR0,12,140,140_.jpg'></img>
+                                <img className=' rounded-full w-11 h-11 mt-2 mr-4' src={colabData[1]?.imgUrl}></img>
                             </div>
                         </div>
                         

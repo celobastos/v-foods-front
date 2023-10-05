@@ -7,6 +7,8 @@ import Indicadores from './pages/indicadores/indicadores';
 import Relatorio from "./pages/relatorio/relatorio";
 import Colaboradores from "./pages/colaboradores/colaboradores";
 import CadastroColaborador from "./pages/AddColaborador";
+import CadastroIndicador from "./pages/AddIndicador";
+import CadastroResultado from "./pages/AddResultado";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
   {
     path: "/AddColaborador",
     Component: CadastroColaborador,
+  },
+  {
+    path: "/AddIndicador",
+    Component: CadastroIndicador,
+  },
+  {
+    path: "/AddResultado",
+    Component: CadastroResultado,
   }
 ]);
 export default function App() {

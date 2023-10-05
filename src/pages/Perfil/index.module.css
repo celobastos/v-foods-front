@@ -22,12 +22,13 @@
     border-radius: 14px;
     border: 1px solid #d6d6d6;
     padding : 20px;
+    padding-bottom: 10px;
     background-color: #FFFFFF;
 }
 .status {
     width: 413px;
     height: 300px;
-    margin-top: 165px;
+    margin-top: 140px;
     margin-left: 3rem;
     border-radius: 14px;
     border: 1px solid #d6d6d6;

@@ -7,11 +7,7 @@ import LogoutIcon from '../../assets/LogoutIIconpng.png';
 import Logo from '../../assets/Logo.svg';
 import { Link } from "react-router-dom";
 
-interface SideMenuProps {
-    gestorId: number
-}
-
-const SideMenu = ({gestorId}: SideMenuProps) => {
+const SideMenu = () => {
     return (
         <aside className="flex-shrink-0 h-full bg-white w-64 px-8 py-4 shadow-md flex flex-col justify-between border-r-2 border-div-color"style={{ backgroundColor: '#FBFBFB' }}>
              <div>
@@ -20,7 +16,7 @@ const SideMenu = ({gestorId}: SideMenuProps) => {
                 </div>
                 <ul>
                     <li className="mb-4 hover:bg-hover-blue transition p-2 rounded-md">
-                        <Link to={`/HomePage?id=${gestorId}`}>
+                        <Link to={`/HomePage`}>
                             <a href="#" className="text-gray-700 flex items-center space-x-6">
                                 <img src={HomeIcon} alt="Home Icon" className="w-6 h-6" />
                                 <span>Home</span>
@@ -28,7 +24,7 @@ const SideMenu = ({gestorId}: SideMenuProps) => {
                         </Link>
                     </li>
                     <li className="mb-4 hover:bg-hover-blue transition p-2 rounded-md">
-                        <Link to={`/Indicadores?id=${gestorId}`}>
+                        <Link to={`/Indicadores`}>
                                 <a href="#" className="text-gray-700 flex items-center space-x-6">
                                     <img src={IndicadoresIcon} alt="Home Icon" className="w-6 h-6" />
                                     <span>Indicadores</span>
@@ -36,7 +32,7 @@ const SideMenu = ({gestorId}: SideMenuProps) => {
                         </Link>
                     </li>
                     <li className="mb-4 hover:bg-hover-blue transition p-2 rounded-md">
-                        <Link to={`/Colaborador?id=${gestorId}`}>
+                        <Link to={`/Colaborador`}>
                             <a href="#" className="text-gray-700 flex items-center space-x-6">
                                 <img src={RankingIcon} alt="Home Icon" className="w-6 h-6" />
                                 <span>Colaboradores</span>
@@ -44,7 +40,7 @@ const SideMenu = ({gestorId}: SideMenuProps) => {
                         </Link>
                     </li>
                     <li className="mb-4 hover:bg-hover-blue transition p-2 rounded-md">
-                        <Link to={`/Gestor?id=${gestorId}`}>
+                        <Link to={`/Gestor`}>
                             <a href="#" className="text-gray-700 flex items-center space-x-6">
                                 <img src={PerfilIcon} alt="Home Icon" className="w-6 h-6" />
                                 <span>Meu Perfil</span>
@@ -62,7 +58,7 @@ const SideMenu = ({gestorId}: SideMenuProps) => {
                     </a>
                     </li>
                     <li className="mb-4 hover:bg-hover-blue transition p-2 rounded-md">
-                    <a href="#" className="text-gray-700 flex items-center space-x-6">
+                    <a href="/" className="text-gray-700 flex items-center space-x-6">
                         <img src={LogoutIcon} alt="Home Icon" className="w-6 h-6" />
                         <span>Sair</span>
                     </a>

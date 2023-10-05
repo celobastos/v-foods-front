@@ -1,0 +1,12 @@
+.custom-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.375rem;
+    outline: none;
+    color: gray;
+  }
+  
+  .custom-input:focus {
+    border-color: #E51110; /* Cor de foco personalizada (substitua pela cor desejada) */
+  }

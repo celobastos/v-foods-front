@@ -8,6 +8,8 @@ import Relatorio from "./pages/relatorio/relatorio";
 import Colaboradores from "./pages/colaboradores/colaboradores";
 import CadastroColaborador from "./pages/AddColaborador";
 import BuscaIndicadores from "./pages/buscaIndicadores/buscaIndicadores";
+import CadastroIndicador from "./pages/AddIndicador";
+import CadastroResultado from "./pages/AddResultado";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
   {
     path: "/buscaIndicadores",
     Component: BuscaIndicadores,
+  },
+  {
+    path: "/AddIndicador",
+    Component: CadastroIndicador,
+  },
+  {
+    path: "/AddResultado",
+    Component: CadastroResultado,
   }
 ]);
 export default function App() {

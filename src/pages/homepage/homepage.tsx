@@ -10,7 +10,7 @@ import HomePageGraph from '../../components/homepageGraph/homepageGraph';
 
 const HomePage: React.FC = () => {
 
-    const data = useGestorData();
+    const data = JSON.parse(localStorage['user']);
 
     const mockData = [
         {
@@ -121,7 +121,7 @@ const HomePage: React.FC = () => {
     
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
-            <SideMenu gestorId={data.id}/>
+            <SideMenu/>
             <main className="flex-grow bg-gray-50">
                 <div className="flex items-center">
                     <div className="flex flex-col space-y-4"style={{ marginLeft: '30px' }} >

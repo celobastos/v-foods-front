@@ -24,7 +24,7 @@ const CadastroResultado = () => {
           superMeta: assignData.superMeta,
           challenge: assignData.challenge,
           weight: assignData.weight,
-          result: 0
+          result: assignData.result
       },
   });
 

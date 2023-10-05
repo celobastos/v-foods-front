@@ -1,5 +1,5 @@
 export default interface Colaborador{
-    id: string | number | null,
+    id: number,
     managerId: string | number | null,
     name: string,
     email: string,

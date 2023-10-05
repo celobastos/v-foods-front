@@ -10,6 +10,7 @@ import CadastroColaborador from "./pages/AddColaborador";
 import BuscaIndicadores from "./pages/buscaIndicadores/buscaIndicadores";
 import CadastroIndicador from "./pages/AddIndicador";
 import CadastroResultado from "./pages/AddResultado";
+import CadastroAssign from "./pages/AddAssign";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: "/AddResultado",
     Component: CadastroResultado,
+  },
+  {
+    path: "/AddAssign",
+    Component: CadastroAssign,
   }
 ]);
 export default function App() {

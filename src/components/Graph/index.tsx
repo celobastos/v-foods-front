@@ -10,6 +10,8 @@ import {
   } from "recharts";
 //import { indiData } from '../../data/indiData';
 import IndicatorData from '../../Interfaces/indiData';
+import CustomCaption from '../CustomCaption';
+
 interface GraphProps {
   indicatorData: IndicatorData[];
 }
@@ -37,7 +39,12 @@ const Graph = ({indicatorData}: GraphProps) => {
             <XAxis dataKey="month" />
             <YAxis />
             <Tooltip />
-            <Legend />
+            <Legend 
+              content={<CustomCaption payload={[]} />}
+              layout="vertical"
+              verticalAlign="top" 
+              align="center"
+            />
             <Bar dataKey="meta" fill="#E51110" />
             <Bar dataKey="superMeta" fill="#626FD9" />
             <Bar dataKey="challenge" fill="#5EE0F1" />

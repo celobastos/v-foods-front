@@ -14,23 +14,23 @@ const Colaborador = () => {
   const data = JSON.parse(localStorage['user']);
 
   const colabId =
-    typeof window !== "undefined" && window.location.search.includes("colab=") ? new URLSearchParams(window.location.search).get("colab") : 0;
+  typeof window !== "undefined" && window.location.search.includes("colab=") ? new URLSearchParams(window.location.search).get("colab") : 0;
 
-    const [colabData, setcolabData] = useState<Colaborador>({ name: '', email: '', imgUrl: '', id: colabId, managerId: 0, cellphone: '', dateBirth: '', address: '' });
-    const [indicadorData, setIndicadorData] = useState<IndicatorData[]>([{ 
-      colaboratorId: 0,
-      indicatorId: 0,
-      month: 0,
-      year: 0,
-      weight: 0,
-      meta: 0,
-      superMeta: 0,
-      challenge: 0,
-      result: 0,
-      resultDate: ''
-    
-    }]);
-    const [task, setTask] = useState<Indicador>({ id: 0, managerId: 0, name: '', description: '', measurement: ''});
+  const [colabData, setcolabData] = useState<Colaborador>({ name: '', email: '', imgUrl: '', id: Number(colabId), managerId: 0, cellphone: '', dateBirth: '', address: '' });
+  const [indicadorData, setIndicadorData] = useState<IndicatorData[]>([{ 
+    colaboratorId: 0,
+    indicatorId: 0,
+    month: 0,
+    year: 0,
+    weight: 0,
+    meta: 0,
+    superMeta: 0,
+    challenge: 0,
+    result: 0,
+    resultDate: ''
+  
+  }]);
+  const [task, setTask] = useState<Indicador>({ id: 0, managerId: 0, name: '', description: '', measurement: ''});
 
 
   useEffect(() => {
@@ -68,7 +68,8 @@ const Colaborador = () => {
       });
 
     localStorage.setItem("assign", JSON.stringify(indicadorData[indicadorData.length-1]));
-  }, [colabData.id, indicadorData]);
+    localStorage.setItem("colabData", JSON.stringify(colabData));
+  }, [colabData, indicadorData]);
   const lastIndicator: IndicatorData = indicadorData[indicadorData.length-1];
 
     return (
@@ -80,9 +81,9 @@ const Colaborador = () => {
                     
                     <div id='esquerda'>
                         
-                          <div className='p-2 bg-[#E51110] text-white rounded-md  w-32 mb-4 focus:bg-blue-600 ml-[60px]'>
-                            <Link to={`/addIndicador/?id=${data.id}`}>
-                              Criar indicador
+                          <div className='p-2 bg-[#E51110] text-white rounded-md w-fit mb-4 focus:bg-blue-600 ml-[60px]'>
+                            <Link to={`/addAssign`}>
+                              Atribuir indicador
                             </Link>
                           </div>
                         

@@ -23,6 +23,7 @@ const Login = () => {
         if (response.status === 200) {
           console.log(response.data.user.id);
           localStorage.setItem("token", response.data.jwt);
+          localStorage.setItem("user", JSON.stringify(response.data.user));
           navigate(`/HomePage/?id=${response.data.user.id}`, { replace: true });
         } else if (response.status === 401) {
           messageUpdate("Email ou senha inválidos");

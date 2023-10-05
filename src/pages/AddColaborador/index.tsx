@@ -2,19 +2,17 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import SideMenu from "../../components/sideMenu/sideMenu";
 import NavigationBar from "../../components/NavigationBar";
-import useGestorData from "../../components/useGestorData/userGestorData";
 import Colaborador from "../../Interfaces/Colaborador";
+import Gestor from "../../Interfaces/Gestor";
 import api from "../../api";
 
 const CadastroColaborador = () => {
-  const idGestor =
-    typeof window !== "undefined" && window.location.search.includes("id=") ? new URLSearchParams(window.location.search).get("id") : 0;
-  const data = useGestorData();
+    const data: Gestor = JSON.parse(localStorage['user']);
 
   const [message, messageUpdate] = useState("");
   const [colaborador, setColaborador] = useState<Colaborador>({
     id: 0,
-    managerId: idGestor,
+    managerId: data.id,
     name: '',
     address: '',
     email: '',
@@ -38,9 +36,10 @@ const CadastroColaborador = () => {
       await setColaborador({ ...colaborador, ["managerId"]: data.id });
 
       const response = await api.post("/colaborator/create", colaborador);
+      console.log(response);
 
-      if (response.status !== 200) {
-        flag = 1;
+      if (response.status !== 201) {
+        flag = 0;
         messageUpdate("Problema ao cadastrar colaborador");
       } else {
         flag = 1;
@@ -49,7 +48,8 @@ const CadastroColaborador = () => {
       const colab = response.data;
 
       if (flag === 1) {
-        window.open(`/Colaborador?id=${idGestor}&colab=${colab.id}`, "_self");
+        console.log('sucesso');
+        window.open(`/Colaborador?colab=${colab.id}`, "_self");
       }
     } catch (error) {
       console.log(error);
@@ -59,7 +59,7 @@ const CadastroColaborador = () => {
 
   return (
     <div className="flex h-screen">
-      <SideMenu gestorId={data.id}></SideMenu>
+      <SideMenu></SideMenu>
       <div className="w-full bg-gray-50">
         <NavigationBar name={data.name} picture={data.imgUrl}></NavigationBar>
         <div className="flex items-center justify-center mt-2">

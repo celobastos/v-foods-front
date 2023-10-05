@@ -7,7 +7,7 @@ export default interface IndicatorData {
     meta: number;
     superMeta: number;
     challenge: number;
-    result: number | null;
+    result: number;
     resultDate: string | null;
   }
   

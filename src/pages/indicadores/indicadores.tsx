@@ -4,16 +4,15 @@ import NavigationBar from '../../components/NavigationBar';
 import Rectangle from '../../assets/Rectangle 117.png'
 import blueCircle from '../../assets/Circulo azul.svg';
 import './indicadores.css';
-import useGestorData from '../../components/useGestorData/userGestorData';
 
 
 const Indicadores: React.FC = () => {
   
-    const data = useGestorData();
+    const data = JSON.parse(localStorage['user']);
 
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
-            <SideMenu gestorId={data.id}/>
+            <SideMenu/>
             <main className="flex-grow bg-gray-50">
                 <div className="flex items-center">
                     <NavigationBar name={data.name} picture={data.imgUrl}/>

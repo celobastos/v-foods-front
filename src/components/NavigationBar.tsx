@@ -25,7 +25,7 @@ const NavigationBar = ({name, picture}: NavigationBarProps) => {
             <div className="flex justify-end items-center p-3 w-262px">
                 <img src={sinoIcon} alt="Ícone de sino" className="w-28px h-31px mr-20"/>
 
-                <img src={picture} alt="Ícone do usuário Cadu" className="w-[43px] h-[43px] mr-4 rounded-full"/>
+                <img src={picture} alt="Ícone do usuário Cadu" className="w-[43px] mr-4 rounded-full"/>
                 <span>{name}</span>
             </div>
         </div>

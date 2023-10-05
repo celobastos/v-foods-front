@@ -5,12 +5,10 @@ import './homepage.css'
 import Rectangle from '../../assets/Rectangle 117.png'
 import blueCircle from '../../assets/Circulo azul.svg';
 import anaIcon from '../../assets/aninhaIcon.png';
-import useGestorData from '../../components/useGestorData/userGestorData';
-
 
 const HomePage: React.FC = () => {
 
-    const data = useGestorData();
+    const data = JSON.parse(localStorage['user']);
 
     const mockData = [
         {
@@ -31,7 +29,7 @@ const HomePage: React.FC = () => {
     
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
-            <SideMenu gestorId={data.id}/>
+            <SideMenu/>
             <main className="flex-grow bg-gray-50">
                 <div className="flex items-center">
                     <div className="flex flex-col space-y-4"style={{ marginLeft: '30px' }} >

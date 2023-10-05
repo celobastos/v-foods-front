@@ -1,22 +1,19 @@
 import styles from './index.module.css';
 import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
-import useGestorData from '../../components/useGestorData/userGestorData';
 import search from '../../../public/search.svg';
 import profile from '../../../public/profile.svg';
 import GestorInfo from '../../components/GestorInfo';
 import { Link } from 'react-router-dom';
 import Colaborador from '../../Interfaces/Colaborador';
-import Indicador from '../../Interfaces/Indicador';
+//import Indicador from '../../Interfaces/Indicador';
 import IndicatorData from '../../Interfaces/indiData';
 import { useEffect, useState } from 'react';
 import api from '../../api';
 
 export const PerfilGestor = () => {
 
-    const gesId =
-    typeof window !== "undefined" && window.location.search.includes("id=") ? new URLSearchParams(window.location.search).get("id") : 0;
-    const data = useGestorData();
+    const data = JSON.parse(localStorage['user']);
     const [colabData, setcolabData] = useState<Colaborador[]>([{ name: '', email: '', imgUrl: '', id: 0, managerId: 0, cellphone: '', dateBirth: '', address: '' }]);
     const [assignData, setAssignData] = useState<IndicatorData[]>([{ 
       colaboratorId: 0,
@@ -31,61 +28,44 @@ export const PerfilGestor = () => {
       resultDate: ''
     
     }]);
-    const task: Indicador[] = [{ id: 0, managerId: 0, name: '', description: ''}];
+    //const task: Indicador[] = [{ id: 0, managerId: 0, name: '', description: ''}];
 
-    //Get All Assigns from Manager
+    
     useEffect(() => {
+        //Get All Assigns from Manager
         api
-          .get(`/colaborator/all/${gesId}`)
+          .get(`/colaborator/all/${data.id}`)
           .then((response) => {
             setcolabData(response.data);
             //console.log(colabData);
           })
-          .catch((error) => {
-            console.error("Error:", error);
+          .catch(() => {
+            //console.error("Error:", error);
           });
 
         api
-          .get(`/assign/all/manager/${gesId}`)
+          .get(`/assign/all/manager/${data.id}`)
           .then((response) => {
             setAssignData(response.data);
           })
-          .catch((error) => {
-            console.error("Error:", error);
+          .catch(() => {
+            //console.error("Error:", error);
           });
         
-        api
-        .get(`/indicator/${assignData[0]?.indicatorId}`)
-        .then((response) => {
-            if(response.data){
-            task[0] = response.data;
-            }
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
-
-        api
-        .get(`/indicator/${assignData[1]?.indicatorId}`)
-        .then((response) => {
-            if(response.data){
-            task[1] = response.data;
-            }
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
         
 
         
-    }, [assignData, colabData, gesId, task]);
-    //Calculo da meta total a ser alcançada
-    const metaTotal: number = 100*assignData.length;
-    //Calculo da meta total alcançada pelo time
-    let metaAchive = 0;
+    }, [assignData, colabData, data.id]);
+    //Calculo da meta total alcançada
+    let metaAchive: number = 0;
+    assignData.forEach((item) => {
+        metaAchive += item.result;
+    });
+    //Calculo da meta total a ser alcançada pelo time
+    let metaToAchive = 0;
 
     assignData.forEach((item) => {
-        metaAchive += item.meta;
+        metaToAchive += item.meta;
     });
 
     
@@ -93,7 +73,7 @@ export const PerfilGestor = () => {
 
     return (
         <div className='bg-gray-50 h-screen flex '>
-            <SideMenu gestorId={data.id}></SideMenu>
+            <SideMenu></SideMenu>
             <div>
                 <NavigationBar name={data.name} picture={data.imgUrl}></NavigationBar>
             <div className='flex'>
@@ -115,15 +95,17 @@ export const PerfilGestor = () => {
                         </div>
                         <div className='flex w-full  mt-2 mb-2'>
                             <h1 className='font-semibold text-sm'>Andamento Geral</h1>
-                            <p className='ml-auto text-sm'>{Math.round(metaAchive/metaTotal*100)}%</p>
+                            <p className='ml-auto text-sm'>{Math.round(metaAchive/metaToAchive*100)}%</p>
                             
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
-                            <div className="bg-red-600 h-1.5 rounded-full dark:bg-red-600" style={{ width: `${metaAchive/metaTotal*100}%` }}></div>
+                            <div className="bg-red-600 h-1.5 rounded-full dark:bg-red-600" style={{ width: `${metaAchive/metaToAchive*100}%` }}></div>
                         </div>
                     </div>
-                    <div className="p-2 bg-black text-white rounded-md ml-auto w-24 mt-4">Baixar PDF</div>
-                    <div className={styles['calendar']}>
+                        <Link to={`/relatorio`}>
+                            <div className="p-2 bg-black text-white rounded-md ml-auto w-24 mt-4">Baixar PDF</div>
+                        </Link>
+                        <div className={styles['calendar']}>
                     </div>
                 </div>
                 <div id='direita'>
@@ -143,7 +125,7 @@ export const PerfilGestor = () => {
                         <div className='flex pt-4 w-full'>
                             <div className=' mr-auto w-1/2'>
                                 <div className='flex w-full  mt-2 mb-2'>
-                                    <h1 className='font-semibold text-sm'>{task[0]?.name}</h1>
+                                    <h1 className='font-semibold text-sm'></h1>
                                 </div>
                                 <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
                                     <div className="bg-red-600 h-1.5 rounded-full dark:bg-red-600" style={{ width: '80%' }}></div>
@@ -156,7 +138,7 @@ export const PerfilGestor = () => {
                         <div className='flex pt-4 w-full'>
                             <div className=' mr-auto w-1/2'>
                                 <div className='flex w-full  mt-2 mb-2'>
-                                    <h1 className='font-semibold text-sm'>{task[1]?.name}</h1>
+                                    <h1 className='font-semibold text-sm'></h1>
                                 </div>
                                 <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-200">
                                     <div className="bg-[#626FD9] h-1.5 rounded-full dark:bg-[#169aab]" style={{ width: '50%' }}></div>

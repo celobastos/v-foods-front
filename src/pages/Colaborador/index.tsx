@@ -95,7 +95,7 @@ const Colaborador = () => {
                 
                     <div id="direita" className=" ml-11">
                         <div className=" text-right  ml-auto flex mb-4">
-                            <div className=" py-2 px-4 border-2 ml-auto rounded-md border-[#d6d6d6] bg-white">Setembro</div>
+                            <div className=" py-2 px-4 border-2 ml-auto rounded-md border-[#d6d6d6] bg-white">Time</div>
                             <div className="p-2 bg-black text-white rounded-md ml-4">
                               <Link to={'/relatorio'}>
                                 Baixar PDF

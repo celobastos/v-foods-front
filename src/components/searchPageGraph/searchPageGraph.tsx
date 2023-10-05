@@ -21,7 +21,7 @@ interface GraphProps {
 
 
 
-const HomePageGraph = ({indicatorData}: GraphProps) => {
+const SearchPageGraph = ({indicatorData}: GraphProps) => {
   const indiDataWithMonthNames = indicatorData.map(data => ({
       ...data,
       month: mapMonthNumberToName(data.month)
@@ -30,8 +30,8 @@ const HomePageGraph = ({indicatorData}: GraphProps) => {
   return (
     <div>
         <BarChart
-            width={700}
-            height={400}
+            width={1169}
+            height={462}
             data={indiDataWithMonthNames}
             margin={{
                 top: 30,
@@ -59,4 +59,4 @@ const HomePageGraph = ({indicatorData}: GraphProps) => {
   )
 }
 
-export default HomePageGraph
+export default SearchPageGraph

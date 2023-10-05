@@ -179,6 +179,11 @@
   color: #7D55EF;
         
 }
+.text-grafico{
+  font-weight: bold;
+  padding-left: 5%;
+  padding-top: 2%;
+}
 .icon-classname {
   width: 60px; 
   height: 40px; 

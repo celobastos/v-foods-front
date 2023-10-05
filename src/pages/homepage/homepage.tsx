@@ -132,6 +132,7 @@ const HomePage: React.FC = () => {
                 </div>
                 <div className="div-pai">
                     <div className="grafico">
+                    <h1 className="text-grafico">Media Geral dos Indicadores</h1>
                     <HomePageGraph indicatorData={mockIndicatorData} />
 
                     </div>

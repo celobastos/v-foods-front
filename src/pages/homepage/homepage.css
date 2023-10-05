@@ -5,14 +5,16 @@
     flex-direction: row;
     align-content: center;
     justify-content: space-between;
-    margin-top: 75px;
+    margin-top: 55px;
   }
   
   .grafico{
-    width: 624px;
-    height: 467px;
+    width: 750px;
+    height: 450px;
     padding: 4px;
     margin-left: 150px;
+    border: 1px solid #E0E0E0;
+    border-radius: 33px;
   }
   .botoes{
     width: 400px;
@@ -29,40 +31,38 @@
   .botao{
     height: 142px;
     width:353px;
-    background-color:#363636 ;
+    background-color: #FBFBFB ;
     border-radius:16px ;
     justify-content: space-between;
     padding-bottom: 40px;
     margin-bottom: 40px;
     display: flex;
+    border: 1px solid #E0E0E0;
+    
   }
   .botao h1 {
-    color: white; 
+    color: #000000; 
     font-size: 15px; 
     margin: 0; 
     padding-top: 50px;
     font-weight: bold;
     padding-left: 40px;
+    font-weight: bold;
     
 }
 .botao h2 {
-  color: white; 
+  color: #000000; 
   font-size: 12px; 
   margin: 0; 
   padding-top: 10px; 
   padding-right: 35px;
 }
 
-  .grafico img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
 .tabela-pai{
  
   width: 100%;
   height: 200px;
-  margin-top: 50px;
+  margin-top: 23px;
 }
 .image-content {
   padding-top: 45px;
@@ -82,7 +82,7 @@
 }
 .tabela-data{
   height: 110px;
-  margin-top:30px ;
+  margin-top:10px ;
   
 }
 .campo {
@@ -90,31 +90,133 @@
   text-align: center;     
   border-bottom: 1px solid #ccc;  
   padding-left: 8px;
-  padding-bottom: -40px;           
+  padding-bottom: -40px;
+  width: 100px;           
+}
+.campo1 {
+  flex-grow: 1;       
+  text-align: center;     
+  border-bottom: 1px solid #ccc;  
+  padding-bottom: -40px;
+  width: 75px;
+  padding-left: 2%;         
+}
+.campo2 {
+  flex-grow: 1;       
+  text-align: left;     
+  border-bottom: 1px solid #ccc;  
+  padding-bottom: -40px;
+  padding-left: 6%;
+  width: 100px;         
+}
+.campo3 {
+  flex-grow: 1;       
+  text-align: left;     
+  border-bottom: 1px solid #ccc;  
+  padding-left: 3%;
+  padding-bottom: -40px;
+  width: 100px;       
+}
+.campo4 {
+  flex-grow: 1;       
+  text-align: left;     
+  border-bottom: 1px solid #ccc;  
+  padding-bottom: -40px;
+  width: 75px; 
+  padding-right:12%;
+  padding-left: -20px;
+
 }
 .data-row {
   display: flex;
   justify-content: space-between;
   padding-left: 10px ;
   padding-right: 10px;  
-  padding-top: 10px;           
+          
 }
 
-.data-campo {
-  flex-grow: 1;                 
-  text-align: center;  
+.data-campo {               
+  text-align: left;  
   padding-left: 10px ;
   padding-right: 10px;
-  padding-top: 10px;             
+  padding-top: 10px;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;         
+}
+.data-campo1 {
+  width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  padding-left: 2%;
+  padding-top: 15px;
+        
+}
+.data-campo2 {
+  width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: start;
+  padding-top: 15px;
+
+}
+.data-campo3 {
+  width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  align-items:center;
+  padding-left: 2%;
+  padding-top: 15px;
+        
+}
+.data-campo4 {
+  padding-top: 15px;
+  color: #7D55EF;
+        
+}
+.text-grafico{
+  font-weight: bold;
+  padding-left: 5%;
+  padding-top: 2%;
 }
 .icon-classname {
-  width: 40px; 
+  width: 60px; 
   height: 40px; 
   margin-right: 8px; 
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   padding-left: 30px;
 }
 .nome-colaborador {
   margin-left: 40px;
+}
+.colab-email-recente-text {
+  font-size: 0.8rem; 
+  color: grey; 
+}
+.colab-nome-recente-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left; 
+} 
+
+.botao-ver-perfil{
+  background-color: black ;
+  color: white ;
+  border: 1px solid black;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 11px;
+  margin-right: 5%;
+  width: 122px;
+  height: 29px;
+  font-size: 11px;
+  margin-top: 15px;
+  
 }
 

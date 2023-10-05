@@ -2,9 +2,11 @@ import React from 'react';
 import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
 import './homepage.css'
-import Rectangle from '../../assets/Rectangle 117.png'
 import blueCircle from '../../assets/Circulo azul.svg';
 import anaIcon from '../../assets/aninhaIcon.png';
+import useGestorData from '../../components/useGestorData/userGestorData';
+import HomePageGraph from '../../components/homepageGraph/homepageGraph';
+
 
 const HomePage: React.FC = () => {
 
@@ -12,20 +14,110 @@ const HomePage: React.FC = () => {
 
     const mockData = [
         {
-            colaborador: "João Bastos",
+            colaborador: "algum usuario qualquer",
             cod: "2",
             data: "04 de abril",
             indicador: "A",
-            status: "Ativo"
+            status: "Ativo",
+            email: 'camila@email.com', 
         },
         {
-            colaborador: "Mari Santos",
+            colaborador: "sei la",
             cod: "1",
             data: "04 de abril",
             indicador: "B",
-            status: "Ativo"
+            status: "Ativo",
+            email: 'seila@email.com', 
         }
     ];
+    const mockIndicatorData = [
+        {
+            colaboratorId: 1,
+            indicatorId: 1,
+            month: 1,
+            year: 2023,
+            weight: 50,
+            meta: 50,
+            superMeta: 75,
+            challenge: 90,
+            result: 70,
+            resultDate: '2023-01-15'
+        },
+        {
+            colaboratorId: 1,
+            indicatorId: 1,
+            month: 2,
+            year: 2023,
+            weight: 60,
+            meta: 60,
+            superMeta: 80,
+            challenge: 85,
+            result: 65,
+            resultDate: '2023-02-15'
+        },
+        {
+            colaboratorId: 1,
+            indicatorId: 1,
+            month: 3,
+            year: 2023,
+            weight: 60,
+            meta: 60,
+            superMeta: 80,
+            challenge: 85,
+            result: 65,
+            resultDate: '2023-03-15'
+        },
+        {
+            colaboratorId: 1,
+            indicatorId: 1,
+            month: 7,
+            year: 2023,
+            weight: 60,
+            meta: 60,
+            superMeta: 80,
+            challenge: 85,
+            result: 65,
+            resultDate: '2023-03-15'
+        },
+        {
+            colaboratorId: 1,
+            indicatorId: 1,
+            month: 6,
+            year: 2023,
+            weight: 60,
+            meta: 60,
+            superMeta: 80,
+            challenge: 85,
+            result: 65,
+            resultDate: '2023-03-15'
+        },
+        {
+            colaboratorId: 1,
+            indicatorId: 1,
+            month: 4,
+            year: 2023,
+            weight: 60,
+            meta: 60,
+            superMeta: 80,
+            challenge: 85,
+            result: 65,
+            resultDate: '2023-03-15'
+        },
+        {
+            colaboratorId: 1,
+            indicatorId: 1,
+            month: 5,
+            year: 2023,
+            weight: 60,
+            meta: 60,
+            superMeta: 80,
+            challenge: 85,
+            result: 65,
+            resultDate: '2023-03-15'
+        }
+  
+    ];
+    
     
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
@@ -40,7 +132,9 @@ const HomePage: React.FC = () => {
                 </div>
                 <div className="div-pai">
                     <div className="grafico">
-                    <img src={Rectangle} alt="Descrição da imagem" />
+                    <h1 className="text-grafico">Media Geral dos Indicadores</h1>
+                    <HomePageGraph indicatorData={mockIndicatorData} />
+
                     </div>
                     <div className="botoes">
                         <div className="botao flex items-center">
@@ -57,32 +151,36 @@ const HomePage: React.FC = () => {
                             <img src={blueCircle} alt="Descrição da segunda imagem" />
                         </div>
                         <div className="text-content flex flex-col justify-center items-start w-1/2">
-                            <h1>Atenção!</h1>
-                            <h2>Sua equipe está abaixo da média este mês, clique aqui para saber mais</h2>
+                            <h1 className="text-black font-bold">Atenção!</h1>
+                            <h2 className="text-black">Sua equipe está abaixo da média este mês, clique aqui para saber mais</h2>
                         </div>
                         </div>
                     </div>
                 </div>
-                <h1 className="text-2xl text-black font-bold mt-6 text-left pl-48">Visto Recente</h1> 
-                <div className="tabela-pai">
+                <h1 className="text-2xl text-black font-bold mt-6 text-left pl-24 ">Colaboradores visto recentemente</h1> 
+                <div className="tabela-pai mt-5">
                     <div className="tabela-header">
                         <div className="campo">Colaborador</div>
-                        <div className="campo">Cod</div>
-                        <div className="campo">Data</div>
-                        <div className="campo">Indicador</div>
-                        <div className="campo">Status</div>
+                        <div className="campo1">Cod</div>
+                        <div className="campo2">Data</div>
+                        <div className="campo3">Indicador</div>
+                        <div className="campo4">Status</div>
                     </div>
                     <div className="tabela-data">
                         {mockData.map((row, index) => (
                             <div key={index} className="data-row">
                                   <div className="data-campo flex items-center nome-colaborador">
                                     <img src={anaIcon} alt="Ícone do Colaborador" className="icon-classname"  />
-                                    {row.colaborador}
+                                    <div>
+                                        <div className="colab-nome-recente-text">{row.colaborador}</div>
+                                        <div className="colab-email-recente-text">{row.email}</div>
+                                    </div>
                                 </div>
-                                <div className="data-campo">{row.cod}</div>
-                                <div className="data-campo">{row.data}</div>
-                                <div className="data-campo">{row.indicador}</div>
-                                <div className="data-campo">{row.status}</div>
+                                <div className="data-campo1">{row.cod}</div>
+                                <div className="data-campo2">{row.data}</div>
+                                <div className="data-campo3">{row.indicador}</div>
+                                <div className="data-campo4">{row.status}</div>
+                                <button className="botao-ver-perfil">Ver Perfil</button>
                             </div>
                         ))}
                     </div>

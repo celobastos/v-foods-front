@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
 import anaIcon from '../../assets/aninhaIcon.png';
+import Gestor from '../../Interfaces/Gestor';
 import './colaboradores.css';
 
 const mockData = [
@@ -54,7 +55,7 @@ const mockData = [
 
 const Colaboradores: React.FC = () => {
 
-    
+  const data: Gestor = JSON.parse(localStorage['user']);
     const [clickedIndexes, setClickedIndexes] = useState<number[]>([]);
 
     const handleSquareClick = (index: number) => {
@@ -65,9 +66,9 @@ const Colaboradores: React.FC = () => {
   
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
-        <SideMenu gestorId={0} />
+        <SideMenu/>
         <main className="flex-grow" style={{ backgroundColor: '#FBFBFB' }}>
-            <NavigationBar picture={''} name={''} />
+            <NavigationBar picture={data.imgUrl} name={data.name} />
             <div className="colab-tabela-pai">
            
                 <div className="colab-tabela-top">

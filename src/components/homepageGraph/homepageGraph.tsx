@@ -10,15 +10,18 @@ import {
     Tooltip,
     Legend
   } from "recharts";
-import IndicatorData from '../../Interfaces/indiData';
 import CustomCaption from '../CustomCaption';
 
-
-interface GraphProps {
-  indicatorData: IndicatorData[];
+interface AveragedData {
+  month: number;
+  avgMeta: number;
+  avgSuperMeta: number;
+  avgChallenge: number;
 }
 
-
+interface GraphProps {
+  indicatorData: AveragedData[];
+}
 
 
 const HomePageGraph = ({indicatorData}: GraphProps) => {
@@ -50,9 +53,9 @@ const HomePageGraph = ({indicatorData}: GraphProps) => {
               verticalAlign="top" 
               align="center"
             />
-            <Bar dataKey="meta" fill="#E51110" />
-            <Bar dataKey="superMeta" fill="#626FD9" />
-            <Bar dataKey="challenge" fill="#5EE0F1" />
+             <Bar dataKey="avgMeta" fill="#E51110" />
+              <Bar dataKey="avgSuperMeta" fill="#626FD9" />
+              <Bar dataKey="avgChallenge" fill="#5EE0F1" />
         </BarChart>
     </div>
     

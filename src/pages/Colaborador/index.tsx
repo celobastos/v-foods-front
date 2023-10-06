@@ -30,7 +30,7 @@ const Colaborador = () => {
     resultDate: ''
   
   }]);
-  const [task, setTask] = useState<Indicador>({ id: 0, managerId: 0, name: '', description: '', measurement: ''});
+  const [task, setTask] = useState<Indicador>({ id: 0, managerId: 0, name: '', description: '', unit: ''});
 
 
   useEffect(() => {
@@ -110,7 +110,7 @@ const Colaborador = () => {
                             </div>
                             <div className="mt-6 justify-start">
                                 <p className="text-lg font-semibold mb-2">{task.name}</p>
-                                <p className="text-gray-500 text-sm"><span className=" font-bold">Tipo: </span>Porcentagem</p>
+                                <p className="text-gray-500 text-sm"><span className=" font-bold">Tipo: </span>{task.unit}</p>
                                 <p className="text-gray-500 text-sm"><span className=" font-bold">Descrição: </span>{task.description}</p>
                                 <div>
                                   <div className="align-middle  mb-4">

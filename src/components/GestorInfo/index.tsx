@@ -8,7 +8,7 @@ interface UserInfoProps {
     socials: string;
 }
 
-const GestorInfo = ({picture, name}: UserInfoProps) => {
+const GestorInfo = ({picture, name, cargo}: UserInfoProps) => {
   return (
     <div>
         <div className={styles['profile']}>
@@ -20,7 +20,7 @@ const GestorInfo = ({picture, name}: UserInfoProps) => {
                 <div className=' ml-36 mt-4'>
                     <div className='pb-4'>
                         <h1 className=' text-3xl font-bold'>{name}</h1>
-                        <p className=' text-gray-400 font-semibold text-xl'>Gestor área X</p>
+                        <p className=' text-gray-400 font-semibold text-lg'>Gestor de {cargo}</p>
                     </div>
                     
                 </div>

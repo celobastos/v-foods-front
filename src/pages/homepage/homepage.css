@@ -185,11 +185,12 @@
   padding-top: 2%;
 }
 .icon-classname {
-  width: 60px; 
+  width: 40px; 
   height: 40px; 
   margin-right: 8px; 
-  padding-bottom: 5px;
-  padding-left: 30px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  border-radius: 32px;
 }
 .nome-colaborador {
   margin-left: 40px;
@@ -197,6 +198,10 @@
 .colab-email-recente-text {
   font-size: 0.8rem; 
   color: grey; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left; 
 }
 .colab-nome-recente-text {
   white-space: nowrap;

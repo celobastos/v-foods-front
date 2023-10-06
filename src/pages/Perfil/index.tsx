@@ -96,10 +96,10 @@ export const PerfilGestor = () => {
                 <NavigationBar name={data.name} picture={data.imgUrl}></NavigationBar>
             <div className='flex'>
                 <div id='esquerda'>
-                    <GestorInfo picture={data.imgUrl} name={data.name} cargo='' email={data.email} socials='linkedin.com/in/josé-sanches'/>
+                    <GestorInfo picture={data.imgUrl} name={data.name} cargo={data.area} email={data.email} socials='linkedin.com/in/josé-sanches'/>
                     <div className={styles['metas']}>
                         <div className='flex w-full'>
-                            <h1 className=' text-lg font-bold'>Time X</h1>
+                            <h1 className=' text-lg font-bold'>Time de {data.area}</h1>
                             <p className=' ml-auto text-sm  text-red-600 font-semibold'>ver todos os colaboradores  </p>
                         </div>
                         

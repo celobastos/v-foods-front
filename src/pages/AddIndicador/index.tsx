@@ -14,7 +14,7 @@ const CadastroIndicador = () => {
     managerId: 0,
     name: '',
     description: '',
-    measurement: 'percentual'
+    unit: 'percentual'
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLInputElement>) => {
@@ -22,9 +22,9 @@ const CadastroIndicador = () => {
     setIndicator({ ...indicator, [name]: value });
   };
 
-  const handleMeasurementChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const measurement = e.target.value;
-    setIndicator({ ...indicator, measurement });
+  const handleUnitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const unit = e.target.value;
+    setIndicator({ ...indicator, unit });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -79,14 +79,14 @@ const CadastroIndicador = () => {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="measurement" className="block text-sm text-gray-500">
+                <label htmlFor="unit" className="block text-sm text-gray-500">
                   Unidade de Medida:
                 </label>
                 <select
-                  id="measurement"
-                  name="measurement"
-                  value={indicator.measurement}
-                  onChange={handleMeasurementChange}
+                  id="unit"
+                  name="unit"
+                  value={indicator.unit}
+                  onChange={handleUnitChange}
                   className={styles["custom-input"]}
                 >
                   <option value="numero">Número</option>

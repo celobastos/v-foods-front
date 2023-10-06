@@ -3,44 +3,54 @@ import {
     PieChart,
     Pie,
     Tooltip,
-    Legend,
     Cell
 } from "recharts";
+import './relatorioCirculo.css'
 import IndicatorData from '../../Interfaces/indiData';
+
 
 interface GraphProps {
     indicatorData: IndicatorData[];
+    dataType: 'meta' | 'superMeta' | 'challenge'; 
 }
 
-const COLORS = ['#E51110', '#626FD9', '#5EE0F1']; 
+const COLORS = {
+    meta: ['#E51110', '#A9A9A9'],
+    superMeta: ['#626FD9', '#A9A9A9'],
+    challenge: ['#5EE0F1', '#A9A9A9']
+}; 
+ 
 
-const RelatorioCirculo = ({ indicatorData }: GraphProps) => {
+const RelatorioCirculo = ({ indicatorData, dataType }: GraphProps) => {
 
+    const total = indicatorData.reduce((acc, item) => acc + item[dataType], 0);
+    const totalAlcancado = indicatorData.reduce((acc, item) => acc + item.result, 0); 
     const dataForPie = [
-        { name: 'Meta', value: indicatorData.reduce((acc, item) => acc + item.meta, 0) },
-        { name: 'Super Meta', value: indicatorData.reduce((acc, item) => acc + item.superMeta, 0) },
-        { name: 'Challenge', value: indicatorData.reduce((acc, item) => acc + item.challenge, 0) }
+        { name: 'Alcançado', value: totalAlcancado },
+        { name: 'Restante', value: total - totalAlcancado }
     ];
 
     return (
-        <PieChart width={400} height={400}>
+      
+        <PieChart width={200} height={200}>
             <Pie
-                data={dataForPie}
-                cx={200}
-                cy={200}
-                innerRadius={60}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-                label
-            >
-                {dataForPie.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index]} />
-                ))}
-            </Pie>
-            <Tooltip />
-            <Legend />
+                    data={dataForPie}
+                    cx={55}
+                    cy={110}
+                    innerRadius={35}
+                    outerRadius={50}
+                    fill="#8884d8"
+                    dataKey="value"
+                
+                >
+                    {dataForPie.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[dataType][index]} />
+                    ))}
+                </Pie>
+                
+                <Tooltip />
         </PieChart>
+ 
     );
 }
 

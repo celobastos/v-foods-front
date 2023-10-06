@@ -4,14 +4,12 @@ import mapMonthNumberToName from '../mapMonth';
 import {
     BarChart,
     Bar,
-    XAxis,
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend
   } from "recharts";
 import IndicatorData from '../../Interfaces/indiData';
-import CustomCaption from '../CustomCaption';
+
 
 
 interface GraphProps {
@@ -41,16 +39,10 @@ const RelatorioBarra = ({indicatorData}: GraphProps) => {
             }}
             >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
+         
             <YAxis />
             <Tooltip />
-            <Legend 
-              content={<CustomCaption payload={[]} />}
-              layout="horizontal"
-              verticalAlign="top" 
-              align="right"
-            
-            />
+           
             <Bar dataKey="meta" fill="#E51110" />
             <Bar dataKey="superMeta" fill="#626FD9" />
             <Bar dataKey="challenge" fill="#5EE0F1" />

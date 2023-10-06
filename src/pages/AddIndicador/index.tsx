@@ -41,11 +41,12 @@ const CadastroIndicador = () => {
         flag = 1;
       }
 
-      //const indi = response.data;
+      const indi = response.data;
 
       if (flag === 1) {
         console.log('sucesso');
-        window.open(`/Gestor`, "_self");
+        localStorage.setItem("indicadorId", JSON.stringify(indi.id));
+        window.open(`/ColabAssign`, "_self");
       }
     } catch (error) {
       console.log(error);

@@ -4,21 +4,20 @@ import SideMenu from "../../components/sideMenu/sideMenu";
 import NavigationBar from "../../components/NavigationBar";
 import api from "../../api";
 import IndicatorData from "../../Interfaces/indiData";
-import Colaborador from "../../Interfaces/Colaborador";
 
 const CadastroAssign = () => {
   const data = JSON.parse(localStorage['user']);
+  const indiId = JSON.parse(localStorage['indicadorId']);
   //const assignData: IndicatorData = JSON.parse(localStorage['assign']);
   //console.log(assignData);
-  let colabData: Colaborador = JSON.parse(localStorage['colabData']);
-  if(!colabData){
-    colabData = {name: '', email: '', imgUrl: '', id: 0, managerId: 0, cellphone: '', dateBirth: '', address: ''};
-  }
+  const colabId =
+  typeof window !== "undefined" && window.location.search.includes("colab=") ? new URLSearchParams(window.location.search).get("colab") : 0;
+
 
   const [message, messageUpdate] = useState("");
   const [indicator, setIndicator] = useState<IndicatorData>({
-    colaboratorId: colabData.id,
-    indicatorId: 0,
+    colaboratorId: Number(colabId),
+    indicatorId: indiId,
     month: 0,
     year: 0,
     weight: 0,
@@ -81,7 +80,7 @@ const CadastroAssign = () => {
                   onChange={handleChange}
                   required
                   className={styles["custom-input"]}
-                  placeholder="indicatorId"
+                  placeholder="IndicatorId"
                 />
               </div>
 
@@ -97,7 +96,7 @@ const CadastroAssign = () => {
                   onChange={handleChange}
                   required
                   className={styles["custom-input"]}
-                  placeholder="colaboratorId"
+                  placeholder="ColaboratorId"
                 />
               </div>
 
@@ -113,7 +112,7 @@ const CadastroAssign = () => {
                   onChange={handleChange}
                   required
                   className={styles["custom-input"]}
-                  placeholder="month"
+                  placeholder="Mês"
                 />
               </div>
 
@@ -129,7 +128,7 @@ const CadastroAssign = () => {
                   onChange={handleChange}
                   required
                   className={styles["custom-input"]}
-                  placeholder="year"
+                  placeholder="Ano"
                 />
               </div>
 
@@ -194,6 +193,22 @@ const CadastroAssign = () => {
                   required 
                   className={styles['custom-input']}
                   placeholder='Peso'
+                />
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="result" className="block text-sm font-medium text-gray-700">
+                Resultado
+                </label>
+                <input
+                  type="number"
+                  id="result"
+                  name="result"
+                  value={indicator.result}
+                  onChange={handleChange}
+                  required 
+                  className={styles['custom-input']}
+                  placeholder='Resultado'
                 />
               </div>
 

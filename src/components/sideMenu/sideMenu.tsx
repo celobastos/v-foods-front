@@ -24,7 +24,7 @@ const SideMenu = () => {
                         </Link>
                     </li>
                     <li className="mb-4 hover:bg-hover-blue transition p-2 rounded-md">
-                        <Link to={`/Indicadores`}>
+                        <Link to={`/AddIndicador`}>
                                 <a href="#" className="text-gray-700 flex items-center space-x-6">
                                     <img src={IndicadoresIcon} alt="Home Icon" className="w-6 h-6" />
                                     <span>Indicadores</span>
@@ -32,7 +32,7 @@ const SideMenu = () => {
                         </Link>
                     </li>
                     <li className="mb-4 hover:bg-hover-blue transition p-2 rounded-md">
-                        <Link to={`/Colaborador`}>
+                        <Link to={`/Colaboradores`}>
                             <a href="#" className="text-gray-700 flex items-center space-x-6">
                                 <img src={RankingIcon} alt="Home Icon" className="w-6 h-6" />
                                 <span>Colaboradores</span>

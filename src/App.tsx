@@ -11,6 +11,7 @@ import BuscaIndicadores from "./pages/buscaIndicadores/buscaIndicadores";
 import CadastroIndicador from "./pages/AddIndicador";
 import CadastroResultado from "./pages/AddResultado";
 import CadastroAssign from "./pages/AddAssign";
+import AssinColab from "./pages/AssignColab";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/AddAssign",
     Component: CadastroAssign,
+  },
+  {
+    path: "/ColabAssign",
+    Component: AssinColab,
   }
 ]);
 export default function App() {

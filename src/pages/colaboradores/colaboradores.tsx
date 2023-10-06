@@ -12,6 +12,16 @@ import { Link } from 'react-router-dom';
 
 const Colaboradores: React.FC = () => {
 
+
+    function formatDate(inputDate: string): string {
+        const monthNames = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+        const date = new Date(inputDate);
+        const day = date.getDate();
+        const month = monthNames[date.getMonth()];
+        return `${day} de ${month}`;
+    };
+    
+    
   const data: Gestor = JSON.parse(localStorage['user']);
     const [clickedIndexes, setClickedIndexes] = useState<number[]>([]);
     const [colaboradores, setColaboradores] = useState<Array<Colaborador>>([]);
@@ -99,7 +109,7 @@ const Colaboradores: React.FC = () => {
                                 </div>
                                 </div>
                             <div className="colab-data-campo colab-field-cod">{assignments[row.id]?.length || 0}</div>
-                            <div className="colab-data-campo colab-field-data">{row.dateBirth}</div> 
+                            <div className="colab-data-campo colab-field-data">{formatDate(row.dateBirth)}</div>
                             <div 
                                 onClick={() => handleSquareClick(index)}
                                 className={`clickable-square ${clickedIndexes.includes(index) ? 'clicked' : ''}`}

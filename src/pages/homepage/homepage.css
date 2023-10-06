@@ -91,7 +91,8 @@
   border-bottom: 1px solid #ccc;  
   padding-left: 8px;
   padding-bottom: -40px;
-  width: 100px;           
+  width: 100px;       
+  font-weight: bold;    
 }
 .campo1 {
   flex-grow: 1;       
@@ -99,7 +100,8 @@
   border-bottom: 1px solid #ccc;  
   padding-bottom: -40px;
   width: 75px;
-  padding-left: 2%;         
+  padding-left: 2%;    
+  font-weight: bold;         
 }
 .campo2 {
   flex-grow: 1;       
@@ -108,6 +110,7 @@
   padding-bottom: -40px;
   padding-left: 6%;
   width: 100px;         
+  font-weight: bold;    
 }
 .campo3 {
   flex-grow: 1;       
@@ -116,6 +119,7 @@
   padding-left: 3%;
   padding-bottom: -40px;
   width: 100px;       
+  font-weight: bold;    
 }
 .campo4 {
   flex-grow: 1;       
@@ -125,7 +129,7 @@
   width: 75px; 
   padding-right:12%;
   padding-left: -20px;
-
+  font-weight: bold;    
 }
 .data-row {
   display: flex;
@@ -217,11 +221,14 @@
   padding: 5px;
   cursor: pointer;
   border-radius: 11px;
-  margin-right: 5%;
+  margin-right: 20%;
   width: 122px;
   height: 29px;
   font-size: 11px;
   margin-top: 15px;
   
+}
+.data-campo-botao{
+  margin-right: 7%;
 }
 

@@ -133,6 +133,9 @@
     
     
 }
+.div-item4 h1{
+    font-weight: bold;
+}
 .div-item5 {
    
     border: 1px solid #D9D9D9;
@@ -150,6 +153,13 @@
     border-radius: 27px;
     padding-top: 4%;
     padding-left: 4%;
+    text-align: center;
+}
+.div-item2 h1{
+    font-weight: bold;
+    text-align: center;
+    margin-left: 30%;
+
 }
 
 .user-info {
@@ -196,11 +206,14 @@
     justify-content: center;
     
 }.grafs-container {
-    text-align: left;
+    text-align: center;
     border: 1px solid #D9D9D9;
     padding-left: 4%;
     padding-top: 4%;
     border-radius: 27px;
+}
+.grafs-container h1 {
+   font-weight: bold;
 }
 
 .images {

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
 import SearchPageGraph from '../../components/searchPageGraph/searchPageGraph';
-import anaIcon from '../../assets/aninhaIcon.png';
 import './buscaIndicadores.css';
 import IndicatorData from '../../Interfaces/indiData';
 import api from '../../api';
 import Colaborador from '../Colaborador';
+import { Link } from 'react-router-dom';
 
 const BuscaIndicadores: React.FC = () => {
     const [view, setView] = useState<'COLABORADORES' | 'MEDIA'>('COLABORADORES');
@@ -16,6 +16,14 @@ const BuscaIndicadores: React.FC = () => {
     const [assignments, setAssignments] = useState<Array<any>>([]);
     const [averagedData, setAveragedData] = useState<any[]>([]);
 
+    function formatDate(inputDate: string): string {
+        const monthNames = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+        const date = new Date(inputDate);
+        const day = date.getDate();
+        const month = monthNames[date.getMonth()];
+        return `${day} de ${month}`;
+    };
+    
     
     const getColaboradores = async () => {
         try {
@@ -74,11 +82,35 @@ const BuscaIndicadores: React.FC = () => {
     
         return result;
     }
+    
+    const getAssignmentsForColaborator = async (colabId: any) => {
+        try {
+            const response = await api.get(`/assign/all/colaborator/${colabId}`);
+            if (response.status === 200) {
+              setAssignments(prevState => ({
+                ...prevState,
+                [colabId]: response.data
+            }));
+            } else {
+                console.error("Erro ao obter as designações para o colaborador");
+            }
+        } catch (error) {
+            console.error("Erro ao obter as designações para o colaborador:", error);
+        }
+    };
+    
 
     useEffect(() =>{
         getColaboradores()
        getAllAssignments()
     },[data.id]);
+    
+    useEffect(() => {
+        colaboradores.forEach(colab => {
+            getAssignmentsForColaborator(colab.id);
+        });
+    }, [colaboradores]);
+    
     
     useEffect(() => {
         if (assignments.length > 0) {
@@ -87,10 +119,6 @@ const BuscaIndicadores: React.FC = () => {
             console.log("algo",avgData);
         }
     }, [assignments]);
-
-
-    console.log("TO AQ" ,colaboradores);
-    console.log("TO la" ,assignments);
 
 
       return (
@@ -115,7 +143,7 @@ const BuscaIndicadores: React.FC = () => {
                     </div>
                     {view === 'MEDIA' ? (
                          <div className="graph-container">
-                            <h1 className='h1-text'>Media Geral dos Indicadores </h1>
+                            <h1 className='h1-text'>Média Geral dos Indicadores </h1>
                             <SearchPageGraph indicatorData={averagedData} />
                          </div>
                     ) : (
@@ -128,18 +156,20 @@ const BuscaIndicadores: React.FC = () => {
                             <div className="search-tabela-data">
                                 {colaboradores.map((row, index) => (
                                     <div key={index} className="search-data-row">
-                                        <img src={anaIcon} alt="Ícone do Colaborador" className="search-icon-classname" />
+                                        <img src={row.imgUrl} alt="Ícone do Colaborador" className="search-icon-classname" />
                                         <div className="search-nome-text">
                                             {row.name}
                                             <div className="search-email-text">
                                                 {row.email} 
                                             </div>
                                         </div>
-                                        <div className="search-data-campo search-field-cod">{row.dateBirth}</div> 
+                                        <div className="search-data-campo search-field-cod">{formatDate(row.dateBirth)}</div>
                                         <div className="search-data-campo search-field-status">{row.managerId}</div> 
-                                        <button className="ver-perfil-btn">
-                                            Ver Perfil
-                                        </button>
+                                        <div className='data-campo-botao'>
+                                <Link to={`/colaborador?colab=${row.id}`} >
+                                    <button className="ver-perfil-btn">Ver Perfil</button>
+                                </Link>
+                                </div>
                                     </div>
                                 ))}
                             </div>

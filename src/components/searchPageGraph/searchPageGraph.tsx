@@ -10,18 +10,21 @@ import {
     Tooltip,
     Legend
   } from "recharts";
-import IndicatorData from '../../Interfaces/indiData';
 import CustomCaption from '../CustomCaption';
 
+interface AveragedData {
+  month: number;
+  avgMeta: number;
+  avgSuperMeta: number;
+  avgChallenge: number;
+}
 
 interface GraphProps {
-  indicatorData: IndicatorData[];
+  indicatorData: AveragedData[];
 }
 
 
-
-
-const SearchPageGraph = ({indicatorData}: GraphProps) => {
+const HomePageGraph = ({indicatorData}: GraphProps) => {
   const indiDataWithMonthNames = indicatorData.map(data => ({
       ...data,
       month: mapMonthNumberToName(data.month)
@@ -30,7 +33,7 @@ const SearchPageGraph = ({indicatorData}: GraphProps) => {
   return (
     <div>
         <BarChart
-            width={1169}
+            width={1120}
             height={462}
             data={indiDataWithMonthNames}
             margin={{
@@ -50,13 +53,13 @@ const SearchPageGraph = ({indicatorData}: GraphProps) => {
               verticalAlign="top" 
               align="center"
             />
-            <Bar dataKey="meta" fill="#E51110" />
-            <Bar dataKey="superMeta" fill="#626FD9" />
-            <Bar dataKey="challenge" fill="#5EE0F1" />
+             <Bar dataKey="avgMeta" fill="#E51110" />
+              <Bar dataKey="avgSuperMeta" fill="#626FD9" />
+              <Bar dataKey="avgChallenge" fill="#5EE0F1" />
         </BarChart>
     </div>
     
   )
 }
 
-export default SearchPageGraph
+export default HomePageGraph

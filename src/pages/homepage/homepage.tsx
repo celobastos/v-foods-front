@@ -94,6 +94,14 @@ const HomePage: React.FC = () => {
             console.error("Erro ao obter as designações para o colaborador:", error);
         }
     };
+    function formatDate(inputDate: string): string {
+        const monthNames = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+        const date = new Date(inputDate);
+        const day = date.getDate();
+        const month = monthNames[date.getMonth()];
+        return `${day} de ${month}`;
+    };
+    
 
     useEffect(() =>{
         getColaboradores()
@@ -134,7 +142,9 @@ const HomePage: React.FC = () => {
 
                     </div>
                     <div className="botoes">
-                        <div className="botao flex items-center">
+                    <div  className="botao flex items-center cursor-pointer"
+                         onClick={() => window.location.href="/relatorio"}
+    >
                             <div className="image-content w-1/2 flex justify-center items-center pt-40px">
                             <img src={blueCircle} alt="Descrição da segunda imagem" />
                         </div>
@@ -149,7 +159,7 @@ const HomePage: React.FC = () => {
                         </div>
                         <div className="text-content flex flex-col justify-center items-start w-1/2">
                             <h1 className="text-black font-bold">Atenção!</h1>
-                            <h2 className="text-black">Sua equipe está abaixo da média este mês, clique aqui para saber mais</h2>
+                            <h2 className="text-black">Comece a medir o desempenho dos seus colaboradores a partir de indicadores.</h2>
                         </div>
                         </div>
                     </div>
@@ -174,12 +184,16 @@ const HomePage: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="data-campo1">{row.id}</div>
-                                <div className="data-campo2">{row.dateBirth}</div>
+                                <div className="data-campo2">{formatDate(row.dateBirth)}</div>
+
                                 <div className="data-campo3">{assignments[row.id]?.length || 0}</div>
                                 <div className="data-campo4">{row.managerId}</div>
+                                <div className='data-campo-botao'>
                                 <Link to={`/colaborador?colab=${row.id}`} >
                                     <button className="botao-ver-perfil">Ver Perfil</button>
                                 </Link>
+                                </div>
+                              
 
                             </div>
                         ))}

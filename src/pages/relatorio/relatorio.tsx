@@ -3,8 +3,6 @@ import Logo from '../../assets/Logo.svg';
 import './relatorio.css'
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
-
-import anaIcon from '../../assets/aninhaIcon.png'
 import RelatorioBarra from '../../components/RelatorioGraph/relatorioBarra';
 import api from '../../api';
 import RelatorioCirculo from '../../components/RelatorioGraph/relatorioCirculo';
@@ -30,8 +28,8 @@ const Relatorio: React.FC = () => {
           .then((canvas) => {
             const imgData = canvas.toDataURL('image/png');
             const pdf = new jsPDF();
-            const imgWidth = 210; // Largura do A4 em mm
-            const imgHeight = (canvas.height * imgWidth) / canvas.width; // Altura ajustada para manter a proporção
+            const imgWidth = 210; 
+            const imgHeight = (canvas.height * imgWidth) / canvas.width; 
             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
             pdf.save("download.pdf");
           });
@@ -119,7 +117,7 @@ const Relatorio: React.FC = () => {
                         </div>
                         <div className="header-container">
                             <div className="header flex flex-col space-y-4">
-                                <h1 className="string-relatorio text-3xl text-black font-bold">Relatorio do mes de Setembro</h1>
+                                <h1 className="string-relatorio text-3xl text-black font-bold">Relatório do mês de Setembro</h1>
                             </div>
                         </div>
             </div>
@@ -131,13 +129,13 @@ const Relatorio: React.FC = () => {
                 <textarea defaultValue="Lorem ipsum ..." className="relatorio-input"></textarea>
                 </div>
                 <div className="header-group">
-                    <h1>Relatorio 1</h1>
+                    <h1>Relatório 1</h1>
                     <textarea defaultValue="Lorem ipsum ..." className="relatorio-input"></textarea>
                 </div>
             </div>
 
             <div className="div-item4">
-                <h1>Historico de Indicadores</h1>
+                <h1>Histórico de Indicadores</h1>
                <div className='graf'>
                 <RelatorioBarra indicatorData={assignmentsForSeptember} />
                 </div>
@@ -150,7 +148,7 @@ const Relatorio: React.FC = () => {
 
 
             <div className="grafs-container">
-                <h1>Grafico de metas</h1>
+                <h1>Gráfico de metas</h1>
                 <div className="images">
                     <RelatorioCirculo indicatorData={assignmentsForSeptember} dataType="meta" />
                     <RelatorioCirculo indicatorData={assignmentsForSeptember} dataType="superMeta" />
@@ -166,7 +164,7 @@ const Relatorio: React.FC = () => {
 
 
             <div className="div-item2">
-                <h1>Destaques do mes</h1>
+                <h1>Destaques do mês</h1>
                 {colaboradores.slice(0, 3).map((colaborador, index) => (
                     <div key={index} className="user-info">
                         <img src={colaborador.imgUrl} alt="user icon" className="user-icon"/>
@@ -180,7 +178,7 @@ const Relatorio: React.FC = () => {
             </div>
 
             <div className="header-group2">
-                <h1>Relatorio 1</h1>
+                <h1>Relatório 1</h1>
                     <textarea defaultValue="Lorem ipsum ..." className="relatorio-input"></textarea>
                 </div>
                 <div className="div-item6">

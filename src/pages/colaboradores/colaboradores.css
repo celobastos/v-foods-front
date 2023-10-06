@@ -35,7 +35,7 @@
 .colab-campo-data {
     width: 200px;
     padding-left: 12%;
-    text-align: center;
+    text-align: end;
 }
 
 .colab-tabela-data {
@@ -108,7 +108,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin-right: 3%;
+    margin-right: 8%;
     
 }
 .ver-perfil-btn {

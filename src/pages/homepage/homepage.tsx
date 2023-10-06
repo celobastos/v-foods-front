@@ -1,124 +1,121 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
 import './homepage.css'
 import blueCircle from '../../assets/Circulo azul.svg';
-import anaIcon from '../../assets/aninhaIcon.png';
-import useGestorData from '../../components/useGestorData/userGestorData';
+import mais from '../../assets/mais.png';
 import HomePageGraph from '../../components/homepageGraph/homepageGraph';
+import Colaborador from '../Colaborador';
+import api from '../../api';
+import IndicatorData from '../../Interfaces/indiData';
+import { Link } from 'react-router-dom';
 
 
 const HomePage: React.FC = () => {
 
     const data = JSON.parse(localStorage['user']);
 
-    const mockData = [
-        {
-            colaborador: "algum usuario qualquer",
-            cod: "2",
-            data: "04 de abril",
-            indicador: "A",
-            status: "Ativo",
-            email: 'camila@email.com', 
-        },
-        {
-            colaborador: "sei la",
-            cod: "1",
-            data: "04 de abril",
-            indicador: "B",
-            status: "Ativo",
-            email: 'seila@email.com', 
+    const [colaboradores, setColaboradores] = useState<Array<Colaborador>>([]);
+    const [assignments, setAssignments] = useState<Array<any>>([]);
+    const [averagedData, setAveragedData] = useState<any[]>([]);
+
+
+    
+    const getColaboradores = async () => {
+        try {
+            const response = await api.get(`/colaborator/all/${data.id}`);
+            if (response.status === 200) {
+                setColaboradores(response.data);
+            } else {
+                
+                console.error("Erro ao obter colaboradores");
+            }
+        } catch (error) {
+            console.error("Erro ao obter colaboradores:", error);
         }
-    ];
-    const mockIndicatorData = [
-        {
-            colaboratorId: 1,
-            indicatorId: 1,
-            month: 1,
-            year: 2023,
-            weight: 50,
-            meta: 50,
-            superMeta: 75,
-            challenge: 90,
-            result: 70,
-            resultDate: '2023-01-15'
-        },
-        {
-            colaboratorId: 1,
-            indicatorId: 1,
-            month: 2,
-            year: 2023,
-            weight: 60,
-            meta: 60,
-            superMeta: 80,
-            challenge: 85,
-            result: 65,
-            resultDate: '2023-02-15'
-        },
-        {
-            colaboratorId: 1,
-            indicatorId: 1,
-            month: 3,
-            year: 2023,
-            weight: 60,
-            meta: 60,
-            superMeta: 80,
-            challenge: 85,
-            result: 65,
-            resultDate: '2023-03-15'
-        },
-        {
-            colaboratorId: 1,
-            indicatorId: 1,
-            month: 7,
-            year: 2023,
-            weight: 60,
-            meta: 60,
-            superMeta: 80,
-            challenge: 85,
-            result: 65,
-            resultDate: '2023-03-15'
-        },
-        {
-            colaboratorId: 1,
-            indicatorId: 1,
-            month: 6,
-            year: 2023,
-            weight: 60,
-            meta: 60,
-            superMeta: 80,
-            challenge: 85,
-            result: 65,
-            resultDate: '2023-03-15'
-        },
-        {
-            colaboratorId: 1,
-            indicatorId: 1,
-            month: 4,
-            year: 2023,
-            weight: 60,
-            meta: 60,
-            superMeta: 80,
-            challenge: 85,
-            result: 65,
-            resultDate: '2023-03-15'
-        },
-        {
-            colaboratorId: 1,
-            indicatorId: 1,
-            month: 5,
-            year: 2023,
-            weight: 60,
-            meta: 60,
-            superMeta: 80,
-            challenge: 85,
-            result: 65,
-            resultDate: '2023-03-15'
+    };
+
+    const getAllAssignments = async () => {
+        try {
+            const response = await api.get(`/assign/all/manager/${data.id}`);
+            if (response.status === 200) {
+                setAssignments(response.data);
+            } else {
+
+                console.error("Erro ao obter todas as designações");
+            }
+        } catch (error) {
+            console.error("Erro ao obter todas as designações:", error);
         }
-  
-    ];
+    };
+    function groupByMonthAndAverage(assignments: IndicatorData[]) {
+        const grouped = assignments.reduce((acc: any, item) => {
+            if (!acc[item.month]) {
+                acc[item.month] = {
+                    month: item.month,
+                    count: 0,
+                    totalMeta: 0,
+                    totalSuperMeta: 0,
+                    totalChallenge: 0,
+                };
+            }
+            acc[item.month].count++;
+            acc[item.month].totalMeta += item.meta;
+            acc[item.month].totalSuperMeta += item.superMeta;
+            acc[item.month].totalChallenge += item.challenge;
+            return acc;
+        }, {});
+    
+        const result = Object.values(grouped).map((group: any) => {
+            return {
+                month: group.month,
+                avgMeta: group.totalMeta / group.count,
+                avgSuperMeta: group.totalSuperMeta / group.count,
+                avgChallenge: group.totalChallenge / group.count,
+            };
+        });
+        
+    
+        return result;
+    }
+    
+    const getAssignmentsForColaborator = async (colabId: any) => {
+        try {
+            const response = await api.get(`/assign/all/colaborator/${colabId}`);
+            if (response.status === 200) {
+              setAssignments(prevState => ({
+                ...prevState,
+                [colabId]: response.data
+            }));
+            } else {
+                console.error("Erro ao obter as designações para o colaborador");
+            }
+        } catch (error) {
+            console.error("Erro ao obter as designações para o colaborador:", error);
+        }
+    };
+
+    useEffect(() =>{
+        getColaboradores()
+       getAllAssignments()
+    },[data.id]);
+    
+    useEffect(() => {
+        colaboradores.forEach(colab => {
+            getAssignmentsForColaborator(colab.id);
+        });
+    }, [colaboradores]);
     
     
+    useEffect(() => {
+        if (assignments.length > 0) {
+            const avgData = groupByMonthAndAverage(assignments);
+            setAveragedData(avgData);
+            console.log("algo",avgData);
+        }
+    }, [assignments]);
+    
+
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
             <SideMenu/>
@@ -133,7 +130,7 @@ const HomePage: React.FC = () => {
                 <div className="div-pai">
                     <div className="grafico">
                     <h1 className="text-grafico">Media Geral dos Indicadores</h1>
-                    <HomePageGraph indicatorData={mockIndicatorData} />
+                    <HomePageGraph indicatorData={averagedData} />
 
                     </div>
                     <div className="botoes">
@@ -148,7 +145,7 @@ const HomePage: React.FC = () => {
                         </div>
                         <div className="botao flex items-center">
                             <div className="image-content w-1/2 flex justify-center items-center pt-40px">
-                            <img src={blueCircle} alt="Descrição da segunda imagem" />
+                            <img src={mais} alt="Descrição da segunda imagem" />
                         </div>
                         <div className="text-content flex flex-col justify-center items-start w-1/2">
                             <h1 className="text-black font-bold">Atenção!</h1>
@@ -167,20 +164,23 @@ const HomePage: React.FC = () => {
                         <div className="campo4">Status</div>
                     </div>
                     <div className="tabela-data">
-                        {mockData.map((row, index) => (
+                        {colaboradores.map((row, index) => (
                             <div key={index} className="data-row">
                                   <div className="data-campo flex items-center nome-colaborador">
-                                    <img src={anaIcon} alt="Ícone do Colaborador" className="icon-classname"  />
+                                    <img src={row.imgUrl} alt="Ícone do Colaborador" className="icon-classname"  />
                                     <div>
-                                        <div className="colab-nome-recente-text">{row.colaborador}</div>
+                                        <div className="colab-nome-recente-text">{row.name}</div>
                                         <div className="colab-email-recente-text">{row.email}</div>
                                     </div>
                                 </div>
-                                <div className="data-campo1">{row.cod}</div>
-                                <div className="data-campo2">{row.data}</div>
-                                <div className="data-campo3">{row.indicador}</div>
-                                <div className="data-campo4">{row.status}</div>
-                                <button className="botao-ver-perfil">Ver Perfil</button>
+                                <div className="data-campo1">{row.id}</div>
+                                <div className="data-campo2">{row.dateBirth}</div>
+                                <div className="data-campo3">{assignments[row.id]?.length || 0}</div>
+                                <div className="data-campo4">{row.managerId}</div>
+                                <Link to={`/colaborador?colab=${row.id}`} >
+                                    <button className="botao-ver-perfil">Ver Perfil</button>
+                                </Link>
+
                             </div>
                         ))}
                     </div>
@@ -194,3 +194,5 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
+

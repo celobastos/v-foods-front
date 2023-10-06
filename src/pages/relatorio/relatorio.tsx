@@ -1,14 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../assets/Logo.svg';
 import './relatorio.css'
 import graf1 from '../../assets/Group 7.png'
 import graf2 from '../../assets/Group 4.png'
 import graf3 from '../../assets/Group 6.png'
 import anaIcon from '../../assets/aninhaIcon.png'
+import RelatorioBarra from '../../components/RelatorioGraph/relatorioBarra';
+import api from '../../api';
+import RelatorioCirculo from '../../components/RelatorioGraph/relatorioCirculo';
 
 
 const Relatorio: React.FC = () => {
+
+    const [assignments, setAssignments] = useState<Array<any>>([]);
+    const [assignmentsForSeptember, setAssignmentsForSeptember] = useState<Array<any>>([]);
+
     
+    const data = JSON.parse(localStorage['user']);
+
+    const getAllAssignments = async () => {
+        try {
+            const response = await api.get(`/assign/all/manager/${data.id}`);
+            if (response.status === 200) {
+                setAssignments(response.data);
+    
+                
+                const filteredAssignments = response.data.filter((assignment: any) => assignment.month === 9);
+                setAssignmentsForSeptember(filteredAssignments);
+                console.log("assignments", response.data); 
+            } else {
+                console.error("Erro ao obter todas as designações");
+            }
+        } catch (error) {
+            console.error("Erro ao obter todas as designações:", error);
+        }
+    };
+    
+
+    useEffect(() =>{
+       
+        getAllAssignments()
+
+    },[data.id]);
 
     return (
         <div className="div-total">
@@ -27,7 +60,9 @@ const Relatorio: React.FC = () => {
           <div className="div-bottom">
            <div className="div-item">
                 <div className="header-group">
-                    <h1>Relatorio 1 </h1>
+                <h1>
+                    Relatorio 1
+                </h1>
                     <h2>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
                     </h2>
@@ -42,6 +77,7 @@ const Relatorio: React.FC = () => {
 
             <div className="div-item4">
                 <h1>Historico de Indicadores</h1>
+                <RelatorioBarra indicatorData={assignmentsForSeptember} />
                 
             </div>
 
@@ -49,9 +85,7 @@ const Relatorio: React.FC = () => {
             <div className="grafs-container">
                 <h1>Grafico de metas</h1>
                 <div className="images">
-                    <img src={graf1} alt="Imagem 1" />
-                    <img src={graf2}  alt="Imagem 2" />
-                    <img src={graf3} alt="Imagem 3" />
+                <RelatorioCirculo indicatorData={assignmentsForSeptember} />
                 </div>
                 <div className="strings">
                     <p>Lorem ipsum dolor sit amet, consectetur</p>

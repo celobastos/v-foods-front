@@ -10,21 +10,18 @@ import {
     Tooltip,
     Legend
   } from "recharts";
+import IndicatorData from '../../Interfaces/indiData';
 import CustomCaption from '../CustomCaption';
 
-interface AveragedData {
-  month: number;
-  avgMeta: number;
-  avgSuperMeta: number;
-  avgChallenge: number;
-}
 
 interface GraphProps {
-  indicatorData: AveragedData[];
+  indicatorData: IndicatorData[];
 }
 
 
-const HomePageGraph = ({indicatorData}: GraphProps) => {
+
+
+const RelatorioBarra = ({indicatorData}: GraphProps) => {
   const indiDataWithMonthNames = indicatorData.map(data => ({
       ...data,
       month: mapMonthNumberToName(data.month)
@@ -33,13 +30,13 @@ const HomePageGraph = ({indicatorData}: GraphProps) => {
   return (
     <div>
         <BarChart
-            width={700}
-            height={400}
+            width={368}
+            height={236}
             data={indiDataWithMonthNames}
             margin={{
                 top: 30,
-                right: 30,
-                left: 20,
+                right: 10,
+                left: 5,
                 bottom: 5
             }}
             >
@@ -49,17 +46,18 @@ const HomePageGraph = ({indicatorData}: GraphProps) => {
             <Tooltip />
             <Legend 
               content={<CustomCaption payload={[]} />}
-              layout="vertical"
+              layout="horizontal"
               verticalAlign="top" 
-              align="center"
+              align="right"
+            
             />
-             <Bar dataKey="avgMeta" fill="#E51110" />
-              <Bar dataKey="avgSuperMeta" fill="#626FD9" />
-              <Bar dataKey="avgChallenge" fill="#5EE0F1" />
+            <Bar dataKey="meta" fill="#E51110" />
+            <Bar dataKey="superMeta" fill="#626FD9" />
+            <Bar dataKey="challenge" fill="#5EE0F1" />
         </BarChart>
     </div>
     
   )
 }
 
-export default HomePageGraph
+export default RelatorioBarra;

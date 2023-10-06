@@ -1,68 +1,72 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SideMenu from '../../components/sideMenu/sideMenu';
 import NavigationBar from '../../components/NavigationBar';
-import anaIcon from '../../assets/aninhaIcon.png';
 import Gestor from '../../Interfaces/Gestor';
 import './colaboradores.css';
+import Colaborador from '../Colaborador';
+import api from '../../api';
+import { Link } from 'react-router-dom';
 
-const mockData = [
-    {
-      colaborador: 'Camila Xavier',
-      cod: '123',
-      data: '01/01/2023',
-      indicador: '10',
-      email: 'camila@email.com', 
-    },
-    {
-      colaborador: 'n sei seila',
-      cod: '123',
-      data: '01/01/2023',
-      indicador: '10',
-      email: 'seila@email.com',
-    },
-    {
-      colaborador: 'nsei seila',
-      cod: '123',
-      data: '01/01/2023',
-      indicador: '10',
-      email: 'seila@email.com', 
-    },
-    {
-      colaborador: 'Camila Xavier',
-      cod: '123',
-      data: '01/01/2023',
-      indicador: '10',
-      email: 'camila@email.com', 
-    },
-    {
-      colaborador: 'Camila Xavier',
-      cod: '123',
-      data: '01/01/2023',
-      indicador: '10',
-      email: 'camila@email.com', 
-    },
-    {
-      colaborador: 'Camila Xavier',
-      cod: '123',
-      data: '01/01/2023',
-      indicador: '10',
-      email: 'camila@email.com', 
-    },
-    
-    
-  ];
+
 
 const Colaboradores: React.FC = () => {
 
   const data: Gestor = JSON.parse(localStorage['user']);
     const [clickedIndexes, setClickedIndexes] = useState<number[]>([]);
+    const [colaboradores, setColaboradores] = useState<Array<Colaborador>>([]);
+    const [assignments, setAssignments] = useState<Array<any>>([]);
+
+    const getColaboradores = async () => {
+      try {
+          const response = await api.get(`/colaborator/all/${data.id}`);
+          if (response.status === 200) {
+              setColaboradores(response.data);
+          } else {
+              
+              console.error("Erro ao obter colaboradores");
+          }
+      } catch (error) {
+          console.error("Erro ao obter colaboradores:", error);
+      }
+  };
+    
+
 
     const handleSquareClick = (index: number) => {
       setClickedIndexes(prevIndexes =>
         prevIndexes.includes(index) ? prevIndexes.filter(i => i !== index) : [...prevIndexes, index]
       );
     };
+
+    useEffect(() =>{
+      getColaboradores()
+    },[data.id]);
+
+    const getAssignmentsForColaborator = async (colabId: any) => {
+      try {
+          const response = await api.get(`/assign/all/colaborator/${colabId}`);
+          if (response.status === 200) {
+            setAssignments(prevState => ({
+              ...prevState,
+              [colabId]: response.data
+          }));
+          } else {
+              console.error("Erro ao obter as designações para o colaborador");
+          }
+      } catch (error) {
+          console.error("Erro ao obter as designações para o colaborador:", error);
+      }
+  };
+
+  useEffect(() => {
+    if (colaboradores.length) {
+        colaboradores.forEach(colab => {
+            getAssignmentsForColaborator(colab.id);
+        });
+    }
+
+}, [colaboradores]);
   
     return (
         <div className="grid grid-cols-[min-content,1fr] h-screen">
@@ -83,19 +87,19 @@ const Colaboradores: React.FC = () => {
                     <div className="colab-campo colab-campo-data">Data</div>
                 </div>
                 <div className="colab-tabela-data">
-                    {mockData.map((row, index) => (
+                    {colaboradores.map((row, index) => (
                             <div key={index} className="colab-data-row">
                             <div className="colab-data-campo colab-nome-colaborador">
-                                <img src={anaIcon} alt="Ícone do Colaborador" className="colab-icon-classname" />
+                                <img src={row.imgUrl} alt="Ícone do Colaborador" className="colab-icon-classname" />
                                 <div className="colab-nome-text">
-                                    {row.colaborador}
+                                    {row.name}
                                     <div className="colab-email-text">
                                     {row.email} 
                                     </div>
                                 </div>
                                 </div>
-                            <div className="colab-data-campo colab-field-cod">{row.cod}</div> 
-                            <div className="colab-data-campo colab-field-data">{row.data}</div> 
+                            <div className="colab-data-campo colab-field-cod">{assignments[row.id]?.length || 0}</div>
+                            <div className="colab-data-campo colab-field-data">{row.dateBirth}</div> 
                             <div 
                                 onClick={() => handleSquareClick(index)}
                                 className={`clickable-square ${clickedIndexes.includes(index) ? 'clicked' : ''}`}
@@ -103,9 +107,9 @@ const Colaboradores: React.FC = () => {
                             </div>
 
                 
-                            <button className="ver-perfil-btn">
-                                Ver Perfil
-                            </button>
+                              <Link to={`/colaborador?colab=${row.id}`} >
+                                    <button className="ver-perfil-btn">Ver Perfil</button>
+                              </Link>
                         </div>
                     ))}
                 </div>

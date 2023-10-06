@@ -113,8 +113,10 @@
     border-radius: 27px;
     display: flex;
     height: 100%;
+    padding-top: 10%;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     
     
 }

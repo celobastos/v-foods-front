@@ -100,7 +100,7 @@ const Login = () => {
                   name="senha"
                   required
                 />
-                <p className="underline underline-offset-2 text-sm ml-60  mt-2 font-medium">Esqueçi minha senha</p>
+                <p className="underline underline-offset-2 text-sm ml-60  mt-2 font-medium">Esqueci minha senha</p>
               </div>
               <div className="mb-8 text-center">
                 <button

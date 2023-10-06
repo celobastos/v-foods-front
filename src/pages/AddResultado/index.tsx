@@ -47,14 +47,14 @@ const CadastroResultado = () => {
       console.log(response);
 
       if (response.status !== 200) {
-        messageUpdate("Problema ao cadastrar indicador");
+        messageUpdate("Problema ao adicionar resultado");
       } else {
         console.log('sucesso');
         window.open(`/Colaborador/?colab=${assignData.colaboratorId}`, "_self");
       }
     } catch (error) {
       console.log(error);
-      messageUpdate("Problema ao cadastrar indicador");
+      messageUpdate("Problema ao adicionar resultado");
     }
   };
 

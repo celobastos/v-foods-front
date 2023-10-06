@@ -82,7 +82,7 @@ const Colaborador = () => {
                     <div id='esquerda'>
                         
                           <div className='p-2 bg-[#E51110] text-white rounded-md w-fit mb-4 focus:bg-blue-600 ml-[60px]'>
-                            <Link to={`/addAssign`}>
+                            <Link to={`/addAssign?colab=${colabId}`}>
                               Atribuir indicador
                             </Link>
                           </div>

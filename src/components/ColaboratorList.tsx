@@ -27,7 +27,7 @@ const ColaboradorList = ({colaboradores}: ColaboradorListProps) => {
               <td><img className='w-[70px] h-[70px] rounded-full my-2 mr-11' src={colaborador.imgUrl} alt={colaborador.name} /></td>
               <td className="py-2 px-4 mr-11 text-gray-700">{colaborador.id}</td>
               <td className="py-2 px-4 mr-11 text-gray-700">{colaborador.name}</td>
-              <td className="py-2 px-4 mr-11 text-gray-700"><Link to={`/AddAssign?colab=${colaborador.id}`}><div className=" border-[2px] border-blue-500 w-8 h-8 rounded-lg hover:bg-blue-500" ></div></Link></td>
+              <td className="py-2 px-4 mr-11 text-gray-700"><Link to={`/AddAssign?colab=${colaborador.id}`}><div className=" border-[2px] border-[#5EE0F1] w-8 h-8 rounded-lg hover:bg-[#5EE0F1]" ></div></Link></td>
             </tr>
           ))}
         </tbody>

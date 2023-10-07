@@ -12,7 +12,8 @@ import CadastroIndicador from "./pages/AddIndicador";
 import CadastroResultado from "./pages/AddResultado";
 import CadastroAssign from "./pages/AddAssign";
 import AssinColab from "./pages/AssignColab";
-
+import AddSucess from "./pages/AddSucesso";
+import Indicadores_2 from "./pages/Indicadores_2";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,9 +64,19 @@ const router = createBrowserRouter([
     Component: CadastroAssign,
   },
   {
+    path: "/AddSucesso",
+    Component: AddSucess,  
+  },
+  {
+    path: "/Indicadores2",
+    Component: Indicadores_2,
+  },
+  {
     path: "/ColabAssign",
     Component: AssinColab,
-  }
+  },
+  
+
 ]);
 export default function App() {
   return <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />;

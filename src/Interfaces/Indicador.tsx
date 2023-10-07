@@ -3,5 +3,5 @@ export default interface Indicador {
     managerId: number,
     name: string,
     description: string,
-    measurement: string,
+    unit: string,
 }

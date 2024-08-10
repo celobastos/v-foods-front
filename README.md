@@ -8,6 +8,8 @@ O Rocket Lab é um programa gratuito da UniVisagio Escola de Excelência que 
 
 Com duração de 2 meses, o programa contou com aulas de capacitação e tempo de desenvolvimento em grupo utilizando metodologia ágil, V-foods é uma aplicação full stack desenvolvido com Node, React, tailwind para estilização e typeScript.
 
+# Telas do projeto
+
 ![image](https://github.com/user-attachments/assets/42216350-9e68-4ccc-946c-87a3ba8c0a69)
 
 ![image](https://github.com/user-attachments/assets/425b88b5-d093-44ae-bd2a-433247b9a4ff)
